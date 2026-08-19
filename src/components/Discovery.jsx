@@ -1,4 +1,4 @@
-import { Logo, PrimaryButton, Kicker, Pill } from "./ui";
+import { ScreenHeader, PrimaryButton, Kicker, Pill } from "./ui";
 import { ROLES } from "../data";
 
 function RoleCard({ role, locked }) {
@@ -51,13 +51,15 @@ function LockIcon() {
   );
 }
 
-export default function Discovery({ survey, onTakeAssessment }) {
+export default function Discovery({ survey, onTakeAssessment, onBack, onHome }) {
   return (
     <div className="min-h-screen bg-paper-100">
-      <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-7">
-        <Logo />
-        <p className="text-sm text-ink-500">Based on your intake survey</p>
-      </header>
+      <ScreenHeader
+        maxWidth="max-w-5xl"
+        onBack={onBack}
+        onHome={onHome}
+        right={<p className="text-sm text-ink-500">Based on your intake survey</p>}
+      />
 
       <main className="mx-auto max-w-5xl px-6 pb-24 pt-6">
         <Kicker>{ROLES.length} matched roles</Kicker>

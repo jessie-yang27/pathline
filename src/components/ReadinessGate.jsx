@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo, PrimaryButton, SecondaryButton, Kicker, StepDots } from "./ui";
+import { ScreenHeader, PrimaryButton, SecondaryButton, Kicker, StepDots } from "./ui";
 import { LOGIC_CHECK_QUESTIONS } from "../data";
 
 const STEPS = ["Recording notice", "Quick check", "Ready?"];
@@ -155,7 +155,7 @@ function DecisionStep({ onReady, onNotReady, onBack }) {
   );
 }
 
-export default function ReadinessGate({ onReady, onNotReady }) {
+export default function ReadinessGate({ onReady, onNotReady, onBack, onHome }) {
   const [step, setStep] = useState(0);
   const [consented, setConsented] = useState(false);
   const [answers, setAnswers] = useState({});
@@ -164,10 +164,11 @@ export default function ReadinessGate({ onReady, onNotReady }) {
 
   return (
     <div className="min-h-screen bg-paper-100">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-7">
-        <Logo />
-        <p className="text-sm text-ink-500">Readiness check</p>
-      </header>
+      <ScreenHeader
+        onBack={onBack}
+        onHome={onHome}
+        right={<p className="text-sm text-ink-500">Readiness check</p>}
+      />
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-6">
         <div className="mb-10 flex items-center justify-between">

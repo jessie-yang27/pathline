@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo, PrimaryButton, SecondaryButton, Pill, Kicker, StepDots } from "./ui";
+import { ScreenHeader, PrimaryButton, SecondaryButton, Pill, Kicker, StepDots } from "./ui";
 import { STAGES } from "../data";
 
 const STEPS = ["Role", "Location", "Stage & autonomy", "Priorities"];
@@ -43,7 +43,7 @@ function VoiceAffordance({ id }) {
   );
 }
 
-export default function Intake({ initial, onComplete }) {
+export default function Intake({ initial, onComplete, onBack: onNavBack, onHome }) {
   const [step, setStep] = useState(0);
   const [data, setData] = useState(initial);
 
@@ -60,10 +60,11 @@ export default function Intake({ initial, onComplete }) {
 
   return (
     <div className="min-h-screen bg-paper-100">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-7">
-        <Logo />
-        <p className="text-sm text-ink-500">Step {step + 1} of {STEPS.length}</p>
-      </header>
+      <ScreenHeader
+        onBack={onNavBack}
+        onHome={onHome}
+        right={<p className="text-sm text-ink-500">Step {step + 1} of {STEPS.length}</p>}
+      />
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-6">
         <div className="mb-10 flex items-center justify-between">

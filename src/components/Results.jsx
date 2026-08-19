@@ -1,14 +1,15 @@
-import { Logo, PrimaryButton, Kicker } from "./ui";
+import { ScreenHeader, PrimaryButton, Kicker } from "./ui";
 import { SCORE } from "../data";
 import { ordinal } from "../utils";
 
-export default function Results({ onSeeMatches }) {
+export default function Results({ onSeeMatches, onBack, onHome }) {
   return (
     <div className="min-h-screen bg-paper-100">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-7">
-        <Logo />
-        <p className="text-sm text-ink-500">Assessment complete</p>
-      </header>
+      <ScreenHeader
+        onBack={onBack}
+        onHome={onHome}
+        right={<p className="text-sm text-ink-500">Assessment complete</p>}
+      />
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-6">
         <Kicker>Your results</Kicker>

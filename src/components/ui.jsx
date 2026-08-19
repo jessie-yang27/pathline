@@ -56,6 +56,42 @@ export function Kicker({ children, className = "" }) {
   );
 }
 
+function BackIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+      <path d="M15 5 8 12l7 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+export function ScreenHeader({ maxWidth = "max-w-3xl", onBack, onHome, right }) {
+  return (
+    <header className={`mx-auto flex ${maxWidth} items-center justify-between px-6 py-7`}>
+      <div className="flex items-center gap-4">
+        {onBack && (
+          <button
+            onClick={onBack}
+            aria-label="Back"
+            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-ink-900/15 text-ink-600 transition hover:border-ink-900/40 hover:text-ink-900"
+          >
+            <BackIcon />
+          </button>
+        )}
+        <Logo />
+        {onHome && (
+          <button
+            onClick={onHome}
+            className="ml-1 text-xs font-medium text-ink-500 underline decoration-ink-300 underline-offset-2 transition hover:text-ink-900"
+          >
+            Home
+          </button>
+        )}
+      </div>
+      {right}
+    </header>
+  );
+}
+
 export function StepDots({ total, current }) {
   return (
     <div className="flex items-center gap-2">

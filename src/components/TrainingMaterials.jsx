@@ -1,13 +1,14 @@
-import { Logo, PrimaryButton, Kicker } from "./ui";
+import { ScreenHeader, PrimaryButton, Kicker } from "./ui";
 import { TRAINING_RESOURCES } from "../data";
 
-export default function TrainingMaterials({ onBackToGate }) {
+export default function TrainingMaterials({ onBackToGate, onBack, onHome }) {
   return (
     <div className="min-h-screen bg-paper-100">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-7">
-        <Logo />
-        <p className="text-sm text-ink-500">Taking a moment to prepare</p>
-      </header>
+      <ScreenHeader
+        onBack={onBack}
+        onHome={onHome}
+        right={<p className="text-sm text-ink-500">Taking a moment to prepare</p>}
+      />
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-6">
         <Kicker>Let's get you ready</Kicker>

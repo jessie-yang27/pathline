@@ -11,20 +11,35 @@ grading. All state lives in React on the client.
 ## Flow
 
 1. **Landing** — thesis and CTA
-2. **Intake survey** — 4-step form capturing role preferences
-3. **Discovery** — matched roles, locked behind the assessment
-4. **Readiness gate** — recording consent notice, a short non-scored logic
+2. **How it works** — explains the assessment → score → matches loop, then
+   forks into two starting paths:
+   - **Continue with the free assessment** — skips straight to the
+     readiness gate with the standard question set
+   - **Tell us about the job you want** — goes through the intake survey
+     and matched-roles discovery screen first, then the readiness gate
+3. **Intake survey** *(tailored path only)* — 4-step form capturing role
+   preferences
+4. **Discovery** *(tailored path only)* — matched roles, locked behind the
+   assessment
+5. **Readiness gate** — recording consent notice, a short non-scored logic
    check, then "I'm ready" (→ mock camera/screen permissions → assessment)
    or "Not ready yet" (→ training materials)
-5. **Training materials** — supportive prep resources, with a way back to
+6. **Training materials** — supportive prep resources, with a way back to
    the readiness gate
-6. **Assessment** — 3-section flow wrapped in a light proctoring UI shell
-   (recording indicator + mock camera preview); Product Sense is fully
-   interactive with real mock questions, Behavioral and AI Fluency are
-   represented as completed steps
-7. **Results** — percentile score broken into the three dimensions, with
+7. **Assessment** — three real, fully interactive sections wrapped in a
+   light proctoring UI shell (recording indicator + mock camera preview),
+   about 20 minutes total:
+   - **Behavioral** (8 min) — 3 open-response questions
+   - **Product Sense** (5 min) — 1 core design question
+   - **AI Fluency** (7 min) — a mock "connect GitHub" gate, then 3 questions
+8. **Results** — percentile score broken into the three dimensions, with
    explicit transparency framing
-8. **Matches** — unlocked roles with an "express interest" flow
+9. **Matches** — unlocked roles with an "express interest" flow
+
+Every screen except the proctored Assessment itself shows a back button and
+a "Home" link in the header, backed by a navigation history stack so back
+always returns to the screen you actually came from (including across the
+two forked paths).
 
 A top-level tab switcher toggles between this candidate flow and a **bonus
 recruiter view**: a ranked candidate dashboard with a live-resorting rubric

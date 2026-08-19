@@ -71,40 +71,65 @@ export const ASSESSMENT_SECTIONS = [
     id: "behavioral",
     label: "Behavioral",
     description: "How you operate under ambiguity, conflict, and pressure.",
-    minutes: 20,
+    minutes: 8,
   },
   {
     id: "product-sense",
     label: "Product Sense",
     description: "How you reason about users, tradeoffs, and product decisions.",
-    minutes: 25,
+    minutes: 5,
   },
   {
     id: "ai-fluency",
     label: "AI Fluency",
     description: "How you evaluate and work with AI-native product surfaces.",
-    minutes: 15,
+    minutes: 7,
+  },
+];
+
+export const ASSESSMENT_TOTAL_MINUTES = ASSESSMENT_SECTIONS.reduce((sum, s) => sum + s.minutes, 0);
+
+export const BEHAVIORAL_QUESTIONS = [
+  {
+    id: "b1",
+    prompt: "Tell me about yourself.",
+    helper: "A quick intro — walk us through your background and what's brought you to this point.",
+  },
+  {
+    id: "b2",
+    prompt: "Tell me about the most challenging product you've launched.",
+    helper: "Focus on what made it hard and the specific decisions you made along the way.",
+  },
+  {
+    id: "b3",
+    prompt: "Tell me about a time you championed something that other people disagreed with.",
+    helper: "We're listening for how you built conviction and brought others along.",
   },
 ];
 
 export const PRODUCT_SENSE_QUESTIONS = [
   {
     id: "q1",
-    prompt:
-      "A ride-share app's weekend ride volume is up 30% quarter-over-quarter, but driver cancellation rate has also doubled. Walk through how you'd diagnose the cause and what you'd do in the first two weeks.",
-    helper: "We're evaluating your diagnostic process, not just your final answer.",
+    prompt: "How would you design an AI agent for senior citizens?",
+    helper: "Walk through who you're designing for, the core problem, and how you'd approach trust and usability.",
+  },
+];
+
+export const AI_FLUENCY_QUESTIONS = [
+  {
+    id: "a1",
+    prompt: "How do you use AI in your personal and professional workflows today?",
+    helper: "Be specific — which tools, for what tasks, and how it's changed how you work.",
   },
   {
-    id: "q2",
-    prompt:
-      "You're the PM for a note-taking app used by students. Usage is high during exam weeks and nearly dead otherwise. Design a feature that could smooth out that seasonality — and explain what you'd measure to know if it worked.",
-    helper: "Consider tradeoffs between engagement and staying true to the core use case.",
+    id: "a2",
+    prompt: "Describe how an AI agent works.",
+    helper: "Explain it the way you'd explain it to a smart teammate who hasn't built one.",
   },
   {
-    id: "q3",
-    prompt:
-      "Your team ships a redesigned checkout flow. Conversion is flat, but customer support tickets about checkout have dropped 40%. Do you consider this a win? What would you tell leadership?",
-    helper: "There's no single correct verdict — we're looking at how you frame the decision.",
+    id: "a3",
+    prompt: "What's your experience building products with guardrails and evals?",
+    helper: "If you haven't shipped this directly, talk through how you'd think about it.",
   },
 ];
 

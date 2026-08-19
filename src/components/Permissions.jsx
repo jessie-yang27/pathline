@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo, PrimaryButton, Kicker } from "./ui";
+import { ScreenHeader, PrimaryButton, Kicker } from "./ui";
 
 function PermissionCard({ icon, title, description, granted, onGrant }) {
   return (
@@ -27,17 +27,18 @@ function PermissionCard({ icon, title, description, granted, onGrant }) {
   );
 }
 
-export default function Permissions({ onContinue }) {
+export default function Permissions({ onContinue, onBack, onHome }) {
   const [camera, setCamera] = useState(false);
   const [screen, setScreen] = useState(false);
   const bothGranted = camera && screen;
 
   return (
     <div className="min-h-screen bg-paper-100">
-      <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-7">
-        <Logo />
-        <p className="text-sm text-ink-500">Enabling recording</p>
-      </header>
+      <ScreenHeader
+        onBack={onBack}
+        onHome={onHome}
+        right={<p className="text-sm text-ink-500">Enabling recording</p>}
+      />
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-6">
         <Kicker>One moment</Kicker>

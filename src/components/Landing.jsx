@@ -1,4 +1,5 @@
 import { Logo, PrimaryButton, Kicker } from "./ui";
+import { ASSESSMENT_TOTAL_MINUTES } from "../data";
 
 export default function Landing({ onStart }) {
   return (
@@ -38,7 +39,7 @@ export default function Landing({ onStart }) {
                 <span aria-hidden>→</span>
               </PrimaryButton>
               <p className="text-sm text-ink-500">
-                60 minutes. One assessment, unlimited applications.
+                {ASSESSMENT_TOTAL_MINUTES} minutes. One assessment, unlimited applications.
               </p>
             </div>
 

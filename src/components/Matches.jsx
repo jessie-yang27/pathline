@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Logo, Kicker, Pill } from "./ui";
+import { ScreenHeader, Kicker, Pill } from "./ui";
 import { ROLES, SCORE } from "../data";
 import { ordinal } from "../utils";
 
@@ -50,7 +50,7 @@ function MatchCard({ role, interested, onExpressInterest }) {
   );
 }
 
-export default function Matches({ onBackToLanding }) {
+export default function Matches({ onBackToLanding, onBack, onHome }) {
   const [interested, setInterested] = useState(new Set());
 
   const expressInterest = (roleId) => {
@@ -59,15 +59,20 @@ export default function Matches({ onBackToLanding }) {
 
   return (
     <div className="min-h-screen bg-paper-100">
-      <header className="mx-auto flex max-w-5xl items-center justify-between px-6 py-7">
-        <Logo />
-        <div className="flex items-center gap-2 text-sm text-ink-600">
-          <span>Your score:</span>
-          <span className="font-semibold text-signal-600">
-            {SCORE.overallPercentile}{ordinal(SCORE.overallPercentile)} percentile
-          </span>
-        </div>
-      </header>
+      <ScreenHeader
+        maxWidth="max-w-5xl"
+        onBack={onBack}
+        onHome={onHome}
+        right={
+          <div className="flex items-center gap-2 text-sm text-ink-600">
+            <span>Your score:</span>
+            <span className="font-semibold text-signal-600">
+              {SCORE.overallPercentile}
+              {ordinal(SCORE.overallPercentile)} percentile
+            </span>
+          </div>
+        }
+      />
 
       <main className="mx-auto max-w-5xl px-6 pb-24 pt-6">
         <Kicker>Unlocked</Kicker>
