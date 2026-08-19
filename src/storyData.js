@@ -1,6 +1,11 @@
 // Presentation content for the narrative "story" pages (Why Pathline?,
 // Why We're Better, How We Built This). Not part of the clickable
 // candidate/recruiter product flow — walkthrough material only.
+//
+// Content here is pulled as close to verbatim as possible from the actual
+// take-home doc (thesis, key product decisions, competitive analysis, AI
+// process notes) so the walkthrough sounds like the person who wrote it,
+// not a rewritten summary of it.
 
 export const STORY_PAGES = [
   { id: "why", label: "Why Pathline?" },
@@ -10,36 +15,51 @@ export const STORY_PAGES = [
 
 export const THESIS_QUOTE = "A verified assessment score is a better signal than a resume.";
 
+export const PROBLEM_STATS = [
+  {
+    stat: "100s",
+    label: "of applications sent",
+    detail: "to hear back from a few. Candidates are shouting into the void.",
+  },
+  {
+    stat: "1000s",
+    label: "of resumes received",
+    detail: "per posting — recruiters drown in low-signal applications and still can't find the right person.",
+  },
+];
+
+export const ROOT_CAUSE = "Current tools are designed to optimize for volume over true signal.";
+
 export const THESIS_CARDS = [
   {
     q: "Who's the wedge?",
     a: "Candidates. PM roles first.",
-    why: "A concentrated, high-intent population — one assessment travels across many roles and companies.",
+    why: "Hypothesis: low match quality is caused by low candidate quality. Candidates also have higher urgency to find a job than a recruiter has to fill one role.",
   },
   {
-    q: "What replaces the resume?",
+    q: "What's the unit of signal?",
     a: "A standardized assessment score.",
-    why: "Resumes signal pedigree, not skill. Scores measure the thing that actually predicts whether someone's good at the job.",
+    why: "It has to do two things: help the candidate self-improve, and communicate meaning beyond a resume to the recruiter.",
   },
   {
-    q: "Who moves first?",
-    a: "Candidates initiate.",
-    why: "Assessment-first flips \"apply and wait\" into \"get scored, then get pursued.\"",
+    q: "Who initiates?",
+    a: "Candidates express interest.",
+    why: "Candidates are in charge here — it's infeasible for a recruiter to initiate among thousands of candidates.",
   },
   {
     q: "How transparent are we?",
-    a: "Full score visibility. Hidden weights.",
-    why: "You see every dimension of your score. Companies privately choose how much each dimension matters to them.",
+    a: "Full score, hidden weights.",
+    why: "We fully show the score to both sides, but hide the exact weights of the scoring model. Transparency builds fairness and trust; hidden weights protect against gaming it.",
   },
   {
-    q: "Biggest risk?",
+    q: "Key risk?",
     a: "Gaming the system.",
-    why: "We're not hiding from this one: proctoring, live logic checks, and rotating question banks are day-one defenses, not an afterthought.",
+    why: "Named on day one, not discovered later — proctoring and rotating questions are the first line of defense.",
   },
   {
     q: "What are we NOT building?",
-    a: "A resume-flood job board.",
-    why: "No easy-apply, no keyword spam. One assessment, one signal, unlimited relevant matches.",
+    a: "A basic job board.",
+    why: "One that lets people flood the market with low-quality applications. Volume is the enemy.",
   },
 ];
 
@@ -47,7 +67,7 @@ export const CONNECTION_STEPS = [
   { icon: "📝", label: "Candidate takes assessment" },
   { icon: "📊", label: "Gets scored" },
   { icon: "🙋", label: "Expresses interest" },
-  { icon: "📋", label: "Company sees ranked candidates on their rubric" },
+  { icon: "📋", label: "Company sees candidates ranked on their rubric" },
   { icon: "🤝", label: "Company expresses interest" },
   { icon: "🚀", label: "Match begins" },
 ];
@@ -55,64 +75,67 @@ export const CONNECTION_STEPS = [
 export const NORTH_STAR = {
   title: "North Star",
   metric: "Match Rate",
-  definition: "The share of mutual-interest pairs (candidate + company both express interest) that convert to an interview.",
-  why: "Completion, not clicks — it measures whether both sides actually found the match worth pursuing, not just whether they looked.",
+  definition: "% of match requests — a candidate expressing interest in a role — that result in a completed, successful transaction.",
+  why: "The goal is improving quality of matches, not volume of them. Completion is the proxy for whether a match was actually worth making.",
 };
 
 export const NOT_OPTIMIZING = {
   title: "Not Optimizing For (Yet)",
   metric: "Efficiency & monetization",
   definition: "Take-rate, margin, and funnel efficiency stay off the dashboard for now.",
-  why: "Those are mature-marketplace problems — worth solving once there's liquidity worth protecting, not before there's liquidity at all.",
+  why: "That comes once the marketplace is mature — after quality, not before it.",
 };
 
 export const COLD_START_STEPS = [
   {
     n: "01",
     label: "Borrow credibility",
-    body: "Partner with name-brand PMs to build assessments candidates trust.",
+    body: "Build assessments with PMs from name-brand companies and startups, then put their logos on the site.",
   },
   {
     n: "02",
     label: "Market the mirror",
-    body: "Sell the assessment itself as \"see how you rank\" — value before there's a marketplace.",
+    body: "Get candidates to sign up by marketing the assessment itself as a way to check how you rank among peers.",
   },
   {
     n: "03",
     label: "Walk in with supply",
-    body: "Go to employers with a ready, scored candidate pool — not a cold pitch.",
+    body: "Go to employers already holding a pool of scored candidates — not a cold pitch.",
   },
 ];
 
-export const BETTER_HERO = "Every competitor picked a side. We didn't get the memo.";
+export const COLD_START_CAPTION =
+  "Give something away for free to attract candidates first — then candidates become the asset that attracts recruiting.";
+
+export const BETTER_HERO = "The strongest players win by staying narrow. We're betting we don't have to.";
 
 export const STRENGTH = { WEAK: "WEAK", MEDIUM: "MEDIUM", STRONG: "STRONG" };
 
 export const COMPETITORS = [
   {
-    name: "Indeed / Google Jobs",
-    candidate: { level: STRENGTH.MEDIUM, note: "Huge reach, zero curation." },
-    recruiter: { level: STRENGTH.WEAK, note: "Volume without signal — recruiters drown in resumes." },
+    name: "Indeed / Google",
+    candidate: { level: STRENGTH.WEAK, note: "Standard job listings, no unique features. Outdated feeling." },
+    recruiter: { level: STRENGTH.WEAK, note: "Too easy to post listings — floods the market, volume problem." },
   },
   {
     name: "LinkedIn",
-    candidate: { level: STRENGTH.MEDIUM, note: "Great for visibility, exhausting to actually use." },
-    recruiter: { level: STRENGTH.MEDIUM, note: "Good search, still manual screening at scale." },
+    candidate: { level: STRENGTH.MEDIUM, note: "Job listings, Easy Apply with your profile as signal." },
+    recruiter: { level: STRENGTH.WEAK, note: "Still too easy to post — Easy Apply makes it worse for recruiters." },
   },
   {
     name: "Wellfound",
-    candidate: { level: STRENGTH.STRONG, note: "Beloved by startup-curious candidates." },
-    recruiter: { level: STRENGTH.MEDIUM, note: "Good top-of-funnel, still resume-based screening." },
+    candidate: { level: STRENGTH.STRONG, note: "Startup-focused listings, personalized questions and AI videos." },
+    recruiter: { level: STRENGTH.STRONG, note: "Smaller pool, but connections feel closer and more personal." },
   },
   {
     name: "Paraform",
-    candidate: { level: STRENGTH.MEDIUM, note: "Only as good as the recruiter you're paired with." },
-    recruiter: { level: STRENGTH.STRONG, note: "White-glove and high quality — doesn't scale past headcount." },
+    candidate: { level: STRENGTH.STRONG, note: "Niche selection, personal touch from a Paraform recruiter." },
+    recruiter: { level: STRENGTH.STRONG, note: "1,000 specialized recruiters, white-glove support for employers." },
   },
   {
     name: "Otta",
-    candidate: { level: STRENGTH.STRONG, note: "Great discovery, curated by values and culture." },
-    recruiter: { level: STRENGTH.WEAK, note: "Candidate-first product, thin employer tooling." },
+    candidate: { level: STRENGTH.MEDIUM, note: "Survey up front, but it isn't very comprehensive." },
+    recruiter: { level: STRENGTH.WEAK, note: "Likely a smaller pool, and likely lower quality." },
   },
 ];
 
@@ -123,28 +146,29 @@ export const PATHLINE_ROW = {
 };
 
 export const THE_PATTERN =
-  "The strongest players win by narrowing: Wellfound narrows by company stage, Paraform narrows by white-glove service on one side. Pathline's assessment score is the mechanism that lets both sides be strong at once — without a narrow niche or an army of recruiters.";
+  "The top competitors win by focusing on a specific niche (Wellfound narrows to startups) or one side of the marketplace (Paraform is built for the employer). Pathline's assessment score is what lets us be strong on both sides at once — without narrowing to one.";
 
 export const BUILD_TIMELINE = [
   {
     n: "01",
     icon: "📄",
     label: "Fed it everything",
-    body: "Uploaded the assignment doc, Granola call transcripts, and the job description.",
-    tools: ["Claude"],
+    body: "Uploaded the take-home assignment doc, Granola meeting transcripts, and the job description.",
+    tools: ["Claude", "Granola"],
   },
   {
     n: "02",
     icon: "🗺️",
     label: "Asked for a map, not an answer",
-    quote: "Give me an outline — not the solution.",
-    body: "Deliberately protected original thinking before generating anything.",
+    quote: "Help me brainstorm the solution — without giving me an answer. I want to generate it on my own.",
+    body: "Got an outline, not a solution, then wrote up my own thinking in a doc from there.",
     tools: ["Claude"],
   },
   {
     n: "03",
     icon: "🎙️",
     label: "Got stuck on \"human matchmaker\"",
+    quote: "If I put a human between candidates and companies, it's going to be really slow... I'm trying to think how an AI could do that.",
     body: "Talked it out loud via Wispr Flow instead of typing through the block.",
     tools: ["Wispr Flow"],
   },
@@ -152,7 +176,7 @@ export const BUILD_TIMELINE = [
     n: "04",
     icon: "💡",
     label: "The turning point",
-    body: "Claude asked what a matchmaker's actual inputs and outputs were — and whether it needed to be human at all. That question unlocked the standardized-assessment idea.",
+    body: "Claude asked what the matchmaker's actual inputs and outputs were — and whether it needed to be human at all. That's what unlocked the standardized-assessment idea.",
     quote: "It didn't give me the answer. It asked the question that got me unstuck.",
     tools: ["Claude"],
     featured: true,
@@ -161,7 +185,7 @@ export const BUILD_TIMELINE = [
     n: "05",
     icon: "📐",
     label: "Built the spec, then the thing",
-    body: "Claude drafted the Claude Code build spec. The prototype got built and shipped to Vercel.",
+    body: "Asked Claude to draft the build spec for Claude Code. Built the prototype and deployed it to Vercel.",
     tools: ["Claude", "Claude Code", "Vercel"],
   },
   {
@@ -175,11 +199,12 @@ export const BUILD_TIMELINE = [
 
 export const TOOLKIT = [
   { icon: "🧠", name: "Claude", role: "Thinking partner + spec-writing" },
+  { icon: "🗒️", name: "Granola", role: "Meeting transcripts, fed straight into the research" },
   { icon: "🎙️", name: "Wispr Flow", role: "Talking through stuck points" },
   { icon: "⌨️", name: "Claude Code", role: "Build + iterate" },
 ];
 
 export const BEST_PROMPT = {
-  text: "Help me brainstorm the solution... without giving me an answer, I want to generate it on my own.",
+  text: "Help me brainstorm the solution for this take-home assignment, without giving me an answer. I want to generate it on my own, but I'm getting stuck.",
   caption: "The best prompt of the project — it protects your own reasoning while still using AI as leverage.",
 };

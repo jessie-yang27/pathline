@@ -1,11 +1,14 @@
 import StoryShell from "./StoryShell";
 import {
   THESIS_QUOTE,
+  PROBLEM_STATS,
+  ROOT_CAUSE,
   THESIS_CARDS,
   CONNECTION_STEPS,
   NORTH_STAR,
   NOT_OPTIMIZING,
   COLD_START_STEPS,
+  COLD_START_CAPTION,
 } from "../../storyData";
 
 function ThesisCard({ card }) {
@@ -69,6 +72,17 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </p>
       </section>
 
+      <section className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+        {PROBLEM_STATS.map((p) => (
+          <div key={p.label} className="rounded-lg border border-ink-900/10 bg-paper-50 p-5 text-center">
+            <p className="font-serif text-3xl text-signal-600">{p.stat}</p>
+            <p className="mt-1 text-sm font-medium text-ink-900">{p.label}</p>
+            <p className="mt-1.5 text-xs leading-relaxed text-ink-500">{p.detail}</p>
+          </div>
+        ))}
+      </section>
+      <p className="mx-auto mt-4 max-w-lg text-center text-sm font-medium text-ink-600">{ROOT_CAUSE}</p>
+
       <section className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {THESIS_CARDS.map((card) => (
           <ThesisCard key={card.q} card={card} />
@@ -119,6 +133,9 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
             </div>
           ))}
         </div>
+        <p className="mt-6 border-t border-ink-900/10 pt-5 text-sm italic leading-relaxed text-ink-500">
+          {COLD_START_CAPTION}
+        </p>
       </section>
     </StoryShell>
   );

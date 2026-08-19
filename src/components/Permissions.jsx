@@ -27,7 +27,7 @@ function PermissionCard({ icon, title, description, granted, onGrant }) {
   );
 }
 
-export default function Permissions({ onContinue, onBack, onHome }) {
+export default function Permissions({ sectionLabel, onContinue, onBack, onHome }) {
   const [camera, setCamera] = useState(false);
   const [screen, setScreen] = useState(false);
   const bothGranted = camera && screen;
@@ -37,7 +37,7 @@ export default function Permissions({ onContinue, onBack, onHome }) {
       <ScreenHeader
         onBack={onBack}
         onHome={onHome}
-        right={<p className="text-sm text-ink-500">Enabling recording</p>}
+        right={<p className="text-sm text-ink-500">Enabling recording · {sectionLabel}</p>}
       />
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-6">
@@ -67,7 +67,7 @@ export default function Permissions({ onContinue, onBack, onHome }) {
 
         <div className="mt-8 flex justify-end border-t border-ink-900/10 pt-6">
           <PrimaryButton onClick={onContinue} disabled={!bothGranted}>
-            Begin assessment <span aria-hidden>→</span>
+            Begin {sectionLabel} <span aria-hidden>→</span>
           </PrimaryButton>
         </div>
       </main>

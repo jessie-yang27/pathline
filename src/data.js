@@ -12,6 +12,8 @@ export const ROLES = [
     stage: "Series A",
     location: "Remote (US)",
     salary: "$155k – $185k",
+    salaryMin: 155,
+    salaryMax: 185,
     matchReason: "Matches your seed-to-Series A preference and high autonomy priority.",
     logoLetter: "M",
     logoColor: "bg-[#3f5d43]",
@@ -24,6 +26,8 @@ export const ROLES = [
     stage: "Series B",
     location: "San Francisco, CA (Hybrid)",
     salary: "$170k – $200k",
+    salaryMin: 170,
+    salaryMax: 200,
     matchReason: "Growth-stage scope with a dedicated data science partner, as you requested.",
     logoLetter: "N",
     logoColor: "bg-[#9c5f22]",
@@ -36,6 +40,8 @@ export const ROLES = [
     stage: "Seed",
     location: "Remote (US)",
     salary: "$140k – $165k",
+    salaryMin: 140,
+    salaryMax: 165,
     matchReason: "Early-stage ambiguity and 0-to-1 scope match your autonomy answers.",
     logoLetter: "F",
     logoColor: "bg-[#33492f]",
@@ -71,19 +77,19 @@ export const ASSESSMENT_SECTIONS = [
     id: "behavioral",
     label: "Behavioral",
     description: "How you operate under ambiguity, conflict, and pressure.",
-    minutes: 8,
+    minutes: 20,
   },
   {
     id: "product-sense",
     label: "Product Sense",
     description: "How you reason about users, tradeoffs, and product decisions.",
-    minutes: 5,
+    minutes: 20,
   },
   {
     id: "ai-fluency",
     label: "AI Fluency",
     description: "How you evaluate and work with AI-native product surfaces.",
-    minutes: 7,
+    minutes: 15,
   },
 ];
 
@@ -167,25 +173,9 @@ export const INTAKE_DEFAULTS = {
   workLifeBalance: 3,
 };
 
-export const LOGIC_CHECK_QUESTIONS = [
-  {
-    id: "l1",
-    prompt: "What comes next in the sequence?",
-    display: "2, 4, 8, 16, __",
-    options: ["18", "24", "30", "32"],
-  },
-  {
-    id: "l2",
-    prompt: "Which figure doesn't belong with the others?",
-    display: "Circle, Square, Triangle, Rectangle",
-    options: ["Circle", "Square", "Triangle", "Rectangle"],
-  },
-  {
-    id: "l3",
-    prompt: "If all Zorgs are Blips, and some Blips are Snorps, can we conclude all Zorgs are Snorps?",
-    display: "",
-    options: ["Yes", "No", "Not enough information"],
-  },
+export const SHAPE_SEQUENCE_QUESTIONS = [
+  { id: "s1", shapes: ["circle", "square", "circle", "square", "circle"] },
+  { id: "s2", shapes: ["triangle", "circle", "triangle", "circle", "triangle"] },
 ];
 
 export const TRAINING_RESOURCES = [

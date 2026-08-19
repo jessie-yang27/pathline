@@ -1,5 +1,5 @@
 import { Logo, PrimaryButton, Kicker } from "./ui";
-import { ASSESSMENT_TOTAL_MINUTES } from "../data";
+import { ASSESSMENT_SECTIONS } from "../data";
 
 export default function Landing({ onStart }) {
   return (
@@ -39,14 +39,15 @@ export default function Landing({ onStart }) {
                 <span aria-hidden>→</span>
               </PrimaryButton>
               <p className="text-sm text-ink-500">
-                {ASSESSMENT_TOTAL_MINUTES} minutes. One assessment, unlimited applications.
+                {ASSESSMENT_SECTIONS.map((s) => s.minutes).join(" + ")} min. Three assessments, done
+                independently.
               </p>
             </div>
 
             <div className="mt-16 grid grid-cols-3 gap-8 border-t border-ink-900/10 pt-8">
               <div>
                 <p className="font-serif text-3xl text-ink-950">1</p>
-                <p className="mt-1 text-sm text-ink-500">assessment, not a<br />pile of applications</p>
+                <p className="mt-1 text-sm text-ink-500">score, not a<br />pile of applications</p>
               </div>
               <div>
                 <p className="font-serif text-3xl text-ink-950">100%</p>

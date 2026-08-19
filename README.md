@@ -11,35 +11,38 @@ grading. All state lives in React on the client.
 ## Flow
 
 1. **Landing** — thesis and CTA
-2. **How it works** — explains the assessment → score → matches loop, then
-   forks into two starting paths:
-   - **Continue with the free assessment** — skips straight to the
-     readiness gate with the standard question set
-   - **Tell us about the job you want** — goes through the intake survey
-     and matched-roles discovery screen first, then the readiness gate
-3. **Intake survey** *(tailored path only)* — 4-step form capturing role
-   preferences
-4. **Discovery** *(tailored path only)* — matched roles, locked behind the
-   assessment
-5. **Readiness gate** — recording consent notice, a short non-scored logic
-   check, then "I'm ready" (→ mock camera/screen permissions → assessment)
-   or "Not ready yet" (→ training materials)
-6. **Training materials** — supportive prep resources, with a way back to
-   the readiness gate
-7. **Assessment** — three real, fully interactive sections wrapped in a
-   light proctoring UI shell (recording indicator + mock camera preview),
-   about 20 minutes total:
-   - **Behavioral** (8 min) — 3 open-response questions
-   - **Product Sense** (5 min) — 1 core design question
-   - **AI Fluency** (7 min) — a mock "connect GitHub" gate, then 3 questions
-8. **Results** — percentile score broken into the three dimensions, with
-   explicit transparency framing
-9. **Matches** — unlocked roles with an "express interest" flow
+2. **Dashboard** — the hub. Three independent assessment cards, a survey
+   card ("tell us about the job you want"), and a link to browse companies.
+   No fixed order — this is also where every assessment returns to when
+   it's done, and it's designed to read as the shape of a real account
+   dashboard once a candidate has signed up.
+3. **Intake survey** — 4-step form capturing role preferences; completing
+   it drops you into the companies list
+4. **Assessment, per section** — Behavioral (20 min, 3 questions), Product
+   Sense (20 min, 1 core design question), and AI Fluency (15 min, a mock
+   "connect GitHub" gate then 3 questions) are each started independently
+   from the dashboard and run through their own:
+   - **Readiness gate** — a skimmable recording-consent screen (camera +
+     screen recorded, proves it's really you, Pathline-only), a 2-question
+     visual liveness check (shape-sequence patterns answered by mock voice
+     capture, not clickable options), then "I'm ready" (→ mock camera/
+     screen permissions → the assessment) or "Not ready yet" (→ training
+     materials, with a way back to the gate)
+   - **The assessment itself** — no text box. Each question is answered by
+     a large mock video-recording panel, wrapped in a proctoring shell
+     (recording indicator + timer). No back/home nav appears here.
+   - Finishing an assessment returns straight to the dashboard, with that
+     section marked complete and its score visible immediately.
+5. **Results** *(optional, linked from the dashboard)* — full score
+   breakdown; the overall percentile unlocks once all three sections are
+   complete, with completed dimensions shown progressively before that
+6. **Companies** — every matched company explains why it was picked,
+   filterable by stage / work style / salary range; sharing your score is
+   locked until all three assessments are done, browsing isn't
 
-Every screen except the proctored Assessment itself shows a back button and
+Every screen except the proctored assessment itself shows a back button and
 a "Home" link in the header, backed by a navigation history stack so back
-always returns to the screen you actually came from (including across the
-two forked paths).
+always returns to the screen you actually came from.
 
 A top-level tab switcher toggles between this candidate flow and a **bonus
 recruiter view**: a ranked candidate dashboard with a live-resorting rubric
@@ -52,17 +55,20 @@ lighter than the candidate flow and labeled "Bonus" in the UI.
 
 The same top-level switcher also links to three narrative pages for the live
 walkthrough — not part of the clickable product flow, and visually distinct
-via a dark banner header:
+via a dark banner header. Content is pulled as close to verbatim as possible
+from the actual take-home doc, so it reads in the author's own words rather
+than a rewritten summary:
 
-- **Why Pathline?** — the thesis as a pull-quote, a 6-card grid of key
-  product decisions, the candidate↔company connection flow, North Star /
-  "not optimizing for" callouts, and the cold-start plan
+- **Why Pathline?** — the thesis as a pull-quote, the key-problem stats, a
+  6-card grid of key product decisions, the candidate↔company connection
+  flow, North Star / "not optimizing for" callouts, and the cold-start plan
 - **Why We're Better** — a competitor comparison (Indeed/Google, LinkedIn,
   Wellfound, Paraform, Otta) with color-coded candidate/recruiter strength
   badges, Pathline's row highlighted at the top
 - **How We Built This** — a 6-step timeline of the actual build process
-  (Claude, Wispr Flow, Claude Code, Vercel), with a featured "turning point"
-  moment and the best prompt of the project as a closing pull-quote
+  (Claude, Granola, Wispr Flow, Claude Code, Vercel), with a featured
+  "turning point" moment and the best prompt of the project as a closing
+  pull-quote
 
 ## Run locally
 
