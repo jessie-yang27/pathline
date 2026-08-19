@@ -141,3 +141,124 @@ export const INTAKE_DEFAULTS = {
   autonomy: 3,
   workLifeBalance: 3,
 };
+
+export const LOGIC_CHECK_QUESTIONS = [
+  {
+    id: "l1",
+    prompt: "What comes next in the sequence?",
+    display: "2, 4, 8, 16, __",
+    options: ["18", "24", "30", "32"],
+  },
+  {
+    id: "l2",
+    prompt: "Which figure doesn't belong with the others?",
+    display: "Circle, Square, Triangle, Rectangle",
+    options: ["Circle", "Square", "Triangle", "Rectangle"],
+  },
+  {
+    id: "l3",
+    prompt: "If all Zorgs are Blips, and some Blips are Snorps, can we conclude all Zorgs are Snorps?",
+    display: "",
+    options: ["Yes", "No", "Not enough information"],
+  },
+];
+
+export const TRAINING_RESOURCES = [
+  {
+    id: "t1",
+    title: "PM Product Sense: Structuring Your Answer",
+    description: "A simple framework for walking through ambiguous product problems out loud — clarify, diagnose, decide.",
+    time: "8 min read",
+  },
+  {
+    id: "t2",
+    title: "Talking Through Trade-offs Under Time Pressure",
+    description: "How to narrate your reasoning when a prompt doesn't have a clean right answer.",
+    time: "6 min read",
+  },
+  {
+    id: "t3",
+    title: "What Behavioral Interviewers Are Actually Listening For",
+    description: "Ownership, specificity, and how to avoid vague 'we' answers when describing your own impact.",
+    time: "5 min read",
+  },
+  {
+    id: "t4",
+    title: "Sample Assessment Walkthrough (Recorded)",
+    description: "Watch a full mock run of the three sections, including pacing and what a strong answer sounds like.",
+    time: "12 min watch",
+  },
+];
+
+export const CANDIDATES = [
+  {
+    id: "cand-1",
+    name: "Priya Natarajan",
+    initial: "P",
+    color: "bg-[#3f5d43]",
+    scores: { behavioral: 84, "product-sense": 91, "ai-fluency": 76 },
+    excerpt:
+      "I'd start by segmenting the cancellation spike by driver tenure and geography before touching the product — if it's concentrated in new drivers, this is an onboarding problem, not a demand problem...",
+  },
+  {
+    id: "cand-2",
+    name: "Marcus Webb",
+    initial: "M",
+    color: "bg-[#9c5f22]",
+    scores: { behavioral: 79, "product-sense": 85, "ai-fluency": 88 },
+    excerpt:
+      "The support ticket drop is the more reliable signal here — conversion is noisy and lagging, while a 40% drop in checkout tickets tells you the friction is actually gone. I'd tell leadership...",
+  },
+  {
+    id: "cand-3",
+    name: "Elena Sokolova",
+    initial: "E",
+    color: "bg-[#7e4b1b]",
+    scores: { behavioral: 90, "product-sense": 82, "ai-fluency": 71 },
+    excerpt:
+      "Before designing a feature to smooth out exam-week seasonality, I'd question whether we should — that seasonality might just reflect true usage, and building for it risks diluting the core...",
+  },
+  {
+    id: "cand-4",
+    name: "Devon Okafor",
+    initial: "D",
+    color: "bg-[#33492f]",
+    scores: { behavioral: 73, "product-sense": 88, "ai-fluency": 82 },
+    excerpt:
+      "I'd frame this as a two-week sprint: week one is pure diagnosis — cohort the cancellations by time of day, driver rating, and trip length — week two is a targeted intervention...",
+  },
+  {
+    id: "cand-5",
+    name: "Sofia Herrera",
+    initial: "S",
+    color: "bg-[#55554a]",
+    scores: { behavioral: 81, "product-sense": 76, "ai-fluency": 90 },
+    excerpt:
+      "This is a good moment to bring in an AI-assisted triage layer for the support tickets themselves, to confirm the drop is a genuine friction fix and not a routing or classification artifact...",
+  },
+  {
+    id: "cand-6",
+    name: "Jamal Reeves",
+    initial: "J",
+    color: "bg-[#6f6f5f]",
+    scores: { behavioral: 88, "product-sense": 79, "ai-fluency": 68 },
+    excerpt:
+      "Not automatically a win. I'd want to know if the ticket drop is because the flow is genuinely clearer, or because people are abandoning silently before ever reaching support...",
+  },
+  {
+    id: "cand-7",
+    name: "Nina Vasquez",
+    initial: "N",
+    color: "bg-[#8f8f7c]",
+    scores: { behavioral: 77, "product-sense": 84, "ai-fluency": 79 },
+    excerpt:
+      "My first move is always to rule out a measurement problem before a product problem — check whether the cancellation definition changed or a new driver cohort skews the average...",
+  },
+];
+
+export const RECRUITER_ROLE = {
+  title: "Senior PM, Growth",
+  company: "Northloop",
+  stage: "Series B",
+  applicants: CANDIDATES.length,
+};

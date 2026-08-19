@@ -1,8 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Logo, PrimaryButton, SecondaryButton, Kicker } from "./ui";
 import { ASSESSMENT_SECTIONS, PRODUCT_SENSE_QUESTIONS } from "../data";
 
 const PHASE = { BEHAVIORAL: 0, PRODUCT_SENSE: 1, AI_FLUENCY: 2 };
+
+function formatElapsed(totalSeconds) {
+  const m = String(Math.floor(totalSeconds / 60)).padStart(2, "0");
+  const s = String(totalSeconds % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+function RecordingBadge({ elapsed }) {
+  return (
+    <span className="inline-flex items-center gap-1.5 rounded-full border border-red-900/15 bg-red-950/5 px-3 py-1 text-xs font-medium text-red-800">
+      <span className="relative flex h-2 w-2">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-600 opacity-75" />
+        <span className="relative inline-flex h-2 w-2 rounded-full bg-red-600" />
+      </span>
+      Recording · {formatElapsed(elapsed)}
+    </span>
+  );
+}
+
+function CameraPreview({ elapsed }) {
+  return (
+    <div className="fixed bottom-5 right-5 z-40 w-40 overflow-hidden rounded-lg border border-ink-900/20 bg-ink-950 shadow-lg">
+      <div className="flex aspect-video items-center justify-center bg-ink-800">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" className="text-ink-500">
+          <circle cx="12" cy="8" r="3.5" stroke="currentColor" strokeWidth="1.6" />
+          <path d="M5 19.5c1.4-3.3 4-5 7-5s5.6 1.7 7 5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+        </svg>
+      </div>
+      <div className="flex items-center justify-between px-2.5 py-1.5">
+        <span className="flex items-center gap-1.5 text-[11px] font-medium text-paper-100">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-red-500 opacity-75" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-red-500" />
+          </span>
+          REC
+        </span>
+        <span className="font-mono text-[11px] text-paper-300/70">{formatElapsed(elapsed)}</span>
+      </div>
+    </div>
+  );
+}
 
 function SectionStepper({ activePhase, completed }) {
   return (
@@ -130,6 +171,12 @@ function ProductSenseSection({ onFinish }) {
 export default function Assessment({ onComplete }) {
   const [phase, setPhase] = useState(PHASE.BEHAVIORAL);
   const [completed, setCompleted] = useState([]);
+  const [elapsed, setElapsed] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setElapsed((s) => s + 1), 1000);
+    return () => clearInterval(id);
+  }, []);
 
   const advance = (fromPhase) => {
     setCompleted((c) => (c.includes(fromPhase) ? c : [...c, fromPhase]));
@@ -144,7 +191,10 @@ export default function Assessment({ onComplete }) {
     <div className="min-h-screen bg-paper-100">
       <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-7">
         <Logo />
-        <p className="text-sm text-ink-500">Assessment in progress</p>
+        <div className="flex items-center gap-3">
+          <RecordingBadge elapsed={elapsed} />
+          <p className="hidden text-sm text-ink-500 sm:block">Assessment in progress</p>
+        </div>
       </header>
 
       <main className="mx-auto max-w-3xl px-6 pb-24 pt-6">
@@ -168,6 +218,8 @@ export default function Assessment({ onComplete }) {
           />
         )}
       </main>
+
+      <CameraPreview elapsed={elapsed} />
     </div>
   );
 }
