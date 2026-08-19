@@ -21,23 +21,26 @@ grading. All state lives in React on the client.
 4. **Assessment, per section** — Behavioral (20 min, 3 questions), Product
    Sense (20 min, 1 core design question), and AI Fluency (15 min, a mock
    "connect GitHub" gate then 3 questions) are each started independently
-   from the dashboard. **Only Behavioral runs the full recording/proctoring
-   flow** for this demo — Product Sense and AI Fluency skip straight to the
-   assessment with a plain text answer box, no recording:
+   from the dashboard, and each is answered via a large mock
+   video-recording panel (no text box) under a proctoring shell (recording
+   indicator + timer). **Only Behavioral runs the full consent/liveness-
+   check gate before recording starts** for this demo — Product Sense and
+   AI Fluency skip straight from the dashboard into the recorded assessment:
    - **Readiness gate** *(Behavioral only)* — a skimmable recording-consent
      screen (camera + screen recorded, proves it's really you,
      Pathline-only), a 2-question visual liveness check (shape-sequence
      patterns answered by mock voice capture, not clickable options), then
      "I'm ready" (→ mock camera/screen permissions → the assessment) or
      "Not ready yet" (→ training materials, with a way back to the gate)
-   - **The assessment itself** — Behavioral answers each question via a
-     large mock video-recording panel under a proctoring shell (recording
-     indicator + timer); Product Sense and AI Fluency use a plain textarea
-     instead. No back/home nav appears on the assessment screen itself.
+   - No back/home nav appears on the assessment screen itself.
    - Finishing an assessment returns straight to the dashboard, with that
-     section marked complete and its score visible immediately.
+     section marked complete and its score visible immediately. Each
+     assessment can be retaken 2 weeks after completion — the dashboard
+     card shows a "Retake available [date]" note until then, then swaps in
+     a Retake button.
 5. **Results** *(optional, linked from the dashboard)* — full score
-   breakdown; the overall percentile unlocks once all three sections are
+   breakdown, with a "How to improve" feedback callout under each completed
+   dimension; the overall percentile unlocks once all three sections are
    complete, with completed dimensions shown progressively before that
 6. **Companies** — every matched company explains why it was picked,
    filterable by stage / work style / salary range; sharing your score is

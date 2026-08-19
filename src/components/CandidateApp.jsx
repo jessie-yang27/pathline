@@ -22,7 +22,9 @@ const VIEWS = {
   RESULTS: "results",
 };
 
-const INITIAL_STATUS = { behavioral: false, "product-sense": false, "ai-fluency": false };
+// Values are null (not taken) or a completion timestamp (ms since epoch),
+// used to gate the retake cooldown.
+const INITIAL_STATUS = { behavioral: null, "product-sense": null, "ai-fluency": null };
 
 export default function CandidateApp() {
   const [history, setHistory] = useState([VIEWS.LANDING]);
@@ -125,7 +127,7 @@ export default function CandidateApp() {
         <Assessment
           section={activeSection}
           onComplete={() => {
-            setAssessmentStatus((s) => ({ ...s, [activeSection.id]: true }));
+            setAssessmentStatus((s) => ({ ...s, [activeSection.id]: Date.now() }));
             returnToDashboard();
           }}
         />

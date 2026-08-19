@@ -46,21 +46,8 @@ function VideoAnswerPanel() {
   );
 }
 
-function TextAnswerPanel({ value, onChange }) {
-  return (
-    <textarea
-      rows={9}
-      value={value}
-      onChange={onChange}
-      placeholder="Type your response..."
-      className="mt-6 w-full rounded-sm border border-ink-900/15 bg-white px-4 py-3 text-sm leading-relaxed text-ink-800 placeholder:text-ink-400 focus:border-ink-900/40 focus:outline-none"
-    />
-  );
-}
-
-function QuestionFlowSection({ sectionLabel, minutes, questions, finishLabel, onFinish, proctored }) {
+function QuestionFlowSection({ sectionLabel, minutes, questions, finishLabel, onFinish }) {
   const [qIndex, setQIndex] = useState(0);
-  const [answers, setAnswers] = useState({});
 
   const question = questions[qIndex];
   const isLast = qIndex === questions.length - 1;
@@ -76,14 +63,7 @@ function QuestionFlowSection({ sectionLabel, minutes, questions, finishLabel, on
       <h2 className="mt-4 font-serif text-2xl leading-snug text-ink-950">{question.prompt}</h2>
       <p className="mt-2 text-sm text-ink-500">{question.helper}</p>
 
-      {proctored ? (
-        <VideoAnswerPanel />
-      ) : (
-        <TextAnswerPanel
-          value={answers[question.id] || ""}
-          onChange={(e) => setAnswers((a) => ({ ...a, [question.id]: e.target.value }))}
-        />
-      )}
+      <VideoAnswerPanel />
 
       <div className="mt-6 flex items-center justify-between border-t border-ink-900/10 pt-6">
         <SecondaryButton onClick={() => setQIndex((i) => Math.max(0, i - 1))} disabled={qIndex === 0}>
@@ -122,7 +102,6 @@ function AIFluencySection({ minutes, onFinish }) {
         questions={AI_FLUENCY_QUESTIONS}
         finishLabel="Finish AI Fluency assessment"
         onFinish={onFinish}
-        proctored={false}
       />
     );
   }
@@ -175,21 +154,19 @@ const FINISH_LABELS = {
 };
 
 export default function Assessment({ section, onComplete }) {
-  const proctored = section.id === "behavioral";
   const [elapsed, setElapsed] = useState(0);
 
   useEffect(() => {
-    if (!proctored) return undefined;
     const id = setInterval(() => setElapsed((s) => s + 1), 1000);
     return () => clearInterval(id);
-  }, [proctored]);
+  }, []);
 
   return (
     <div className="min-h-screen bg-paper-100">
       <header className="mx-auto flex max-w-3xl items-center justify-between px-6 py-7">
         <Logo />
         <div className="flex items-center gap-3">
-          {proctored && <RecordingBadge elapsed={elapsed} />}
+          <RecordingBadge elapsed={elapsed} />
           <p className="hidden text-sm text-ink-500 sm:block">{section.label} assessment</p>
         </div>
       </header>
@@ -204,7 +181,6 @@ export default function Assessment({ section, onComplete }) {
             questions={SECTION_QUESTIONS[section.id]}
             finishLabel={FINISH_LABELS[section.id]}
             onFinish={onComplete}
-            proctored={proctored}
           />
         )}
       </main>

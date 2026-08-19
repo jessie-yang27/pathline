@@ -1,8 +1,17 @@
+import { useState } from "react";
 import { ScreenHeader, PrimaryButton, SecondaryButton, Kicker, Pill } from "./ui";
-import { ASSESSMENT_SECTIONS, SCORE } from "../data";
+import { ASSESSMENT_SECTIONS, SCORE, RETAKE_COOLDOWN_MS } from "../data";
 
-function AssessmentCard({ section, done, onStart }) {
+function formatRetakeDate(timestamp) {
+  return new Date(timestamp).toLocaleDateString(undefined, { month: "short", day: "numeric" });
+}
+
+function AssessmentCard({ section, completedAt, onStart }) {
+  const [now] = useState(() => Date.now());
   const dim = SCORE.dimensions.find((d) => d.id === section.id);
+  const done = Boolean(completedAt);
+  const retakeAt = done ? completedAt + RETAKE_COOLDOWN_MS : null;
+  const canRetake = done && now >= retakeAt;
 
   return (
     <div
@@ -26,7 +35,7 @@ function AssessmentCard({ section, done, onStart }) {
       <p className="mt-3 font-serif text-xl text-ink-950">{section.label}</p>
       <p className="mt-1 text-sm text-ink-600">{section.description}</p>
 
-      {done && dim ? (
+      {done && dim && (
         <div className="mt-4 rounded-sm bg-paper-100 p-3">
           <div className="flex items-center justify-between text-sm">
             <span className="text-ink-700">Score</span>
@@ -36,10 +45,24 @@ function AssessmentCard({ section, done, onStart }) {
             </span>
           </div>
         </div>
-      ) : (
+      )}
+
+      {!done && (
         <PrimaryButton onClick={onStart} className="mt-5 w-full">
           Start {section.label} <span aria-hidden>→</span>
         </PrimaryButton>
+      )}
+
+      {done && canRetake && (
+        <SecondaryButton onClick={onStart} className="mt-3 w-full">
+          Retake {section.label}
+        </SecondaryButton>
+      )}
+
+      {done && !canRetake && (
+        <p className="mt-3 text-center text-xs text-ink-400">
+          Retake available {formatRetakeDate(retakeAt)}
+        </p>
       )}
     </div>
   );
@@ -89,7 +112,7 @@ export default function Dashboard({
               <AssessmentCard
                 key={section.id}
                 section={section}
-                done={Boolean(assessmentStatus[section.id])}
+                completedAt={assessmentStatus[section.id]}
                 onStart={() => onStartAssessment(section.id)}
               />
             ))}

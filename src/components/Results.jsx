@@ -50,7 +50,7 @@ export default function Results({ assessmentStatus, onSeeCompanies, onBack, onHo
           </div>
 
           <div className="p-8 sm:p-10">
-            <p className="text-xs uppercase tracking-[0.14em] text-ink-500">Score breakdown</p>
+            <p className="text-xs uppercase tracking-[0.14em] text-ink-500">Score breakdown & feedback</p>
             <div className="mt-5 space-y-6">
               {ASSESSMENT_SECTIONS.map((section) => {
                 const d = SCORE.dimensions.find((dim) => dim.id === section.id);
@@ -76,7 +76,18 @@ export default function Results({ assessmentStatus, onSeeCompanies, onBack, onHo
                         style={{ width: `${done ? d.score : 0}%` }}
                       />
                     </div>
-                    {done && <p className="mt-2 text-sm leading-relaxed text-ink-600">{d.summary}</p>}
+                    {done && (
+                      <>
+                        <p className="mt-2 text-sm leading-relaxed text-ink-600">{d.summary}</p>
+                        <div className="mt-3 flex items-start gap-2 rounded-sm bg-signal-500/8 px-3 py-2.5">
+                          <span className="mt-0.5 text-signal-600" aria-hidden>↗</span>
+                          <p className="text-xs leading-relaxed text-ink-700">
+                            <span className="font-semibold text-signal-700">How to improve: </span>
+                            {d.feedback}
+                          </p>
+                        </div>
+                      </>
+                    )}
                   </div>
                 );
               })}

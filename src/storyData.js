@@ -13,33 +13,38 @@ export const STORY_PAGES = [
   { id: "built", label: "How We Built This" },
 ];
 
-export const THESIS_QUOTE = "A verified assessment score is a better signal than a resume.";
+export const THESIS_QUOTE = "Our belief: A verified assessment score is 10x better signal than a resume.";
+
+export const KEY_PROBLEM = "Key Problem: Existing tools are designed to optimize for volume over true signal.";
 
 export const PROBLEM_STATS = [
   {
+    caption: "Candidates are shouting into the void",
     stat: "100s",
-    label: "of applications sent",
-    detail: "to hear back from a few. Candidates are shouting into the void.",
+    detail: "of applications sent per candidate",
   },
   {
+    caption: "Recruiters are drowning in low-signal applications.",
     stat: "1000s",
-    label: "of resumes received",
-    detail: "per posting — recruiters drown in low-signal applications and still can't find the right person.",
+    detail: "of resumes received per job listing",
   },
 ];
 
-export const ROOT_CAUSE = "Current tools are designed to optimize for volume over true signal.";
+export const SOLUTION_LABEL = "The Solution: Pathline";
 
 export const THESIS_CARDS = [
   {
     q: "Who's the wedge?",
     a: "Candidates. PM roles first.",
-    why: "Hypothesis: low match quality is caused by low candidate quality. Candidates also have higher urgency to find a job than a recruiter has to fill one role.",
+    why: [
+      "Why? Candidates are higher urgency users (recruiters have a large pool), and they are the root cause of the existing volume problem.",
+      "PM roles first to create expertise in one niche.",
+    ],
   },
   {
     q: "What's the unit of signal?",
     a: "A standardized assessment score.",
-    why: "It has to do two things: help the candidate self-improve, and communicate meaning beyond a resume to the recruiter.",
+    why: "The assessment 1) increases quality by helping the candidate self-improve, and 2) shares meaning beyond a resume to the recruiter.",
   },
   {
     q: "Who initiates?",
@@ -54,7 +59,7 @@ export const THESIS_CARDS = [
   {
     q: "Key risk?",
     a: "Gaming the system.",
-    why: "Named on day one, not discovered later — proctoring and rotating questions are the first line of defense.",
+    why: "Proctoring with screen recording and rotating questions are the first line of defense.",
   },
   {
     q: "What are we NOT building?",
@@ -89,17 +94,17 @@ export const NOT_OPTIMIZING = {
 export const COLD_START_STEPS = [
   {
     n: "01",
-    label: "Borrow credibility",
-    body: "Build assessments with PMs from name-brand companies and startups, then put their logos on the site.",
+    label: "Build assessment with PMs from name-brand companies",
+    body: "This builds credibility for the assessment, and then you can put logos on to the webpage itself.",
   },
   {
     n: "02",
-    label: "Market the mirror",
+    label: "Market free assessment as a tool for candidates",
     body: "Get candidates to sign up by marketing the assessment itself as a way to check how you rank among peers.",
   },
   {
     n: "03",
-    label: "Walk in with supply",
+    label: "Approach recruiters with supply",
     body: "Go to employers already holding a pool of scored candidates — not a cold pitch.",
   },
 ];

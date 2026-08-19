@@ -147,21 +147,29 @@ export const SCORE = {
       label: "Behavioral",
       score: 78,
       summary: "Strong structured reasoning under ambiguous prompts; clear ownership language.",
+      feedback:
+        "Add more quantified outcomes to your stories — \"we grew signups\" lands stronger as \"grew signups 40% in six weeks.\"",
     },
     {
       id: "product-sense",
       label: "Product Sense",
       score: 88,
       summary: "Sharp tradeoff framing and metric selection; ties decisions back to user impact.",
+      feedback:
+        "Already strong — tie your guardrail metrics more explicitly to the tradeoffs you're making, and this pushes into the 90s.",
     },
     {
       id: "ai-fluency",
       label: "AI Fluency",
       score: 80,
       summary: "Comfortable evaluating AI-native flows and their failure modes.",
+      feedback:
+        "Broaden the range of projects on your GitHub — reviewers want to see iteration across sessions, not polish on a single repo.",
     },
   ],
 };
+
+export const RETAKE_COOLDOWN_MS = 14 * 24 * 60 * 60 * 1000;
 
 export const INTAKE_DEFAULTS = {
   roleType: "Product Manager",

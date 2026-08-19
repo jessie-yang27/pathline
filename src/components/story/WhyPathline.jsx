@@ -1,8 +1,9 @@
 import StoryShell from "./StoryShell";
 import {
   THESIS_QUOTE,
+  KEY_PROBLEM,
   PROBLEM_STATS,
-  ROOT_CAUSE,
+  SOLUTION_LABEL,
   THESIS_CARDS,
   CONNECTION_STEPS,
   NORTH_STAR,
@@ -12,11 +13,16 @@ import {
 } from "../../storyData";
 
 function ThesisCard({ card }) {
+  const whyLines = Array.isArray(card.why) ? card.why : [card.why];
   return (
     <div className="rounded-lg border border-ink-900/10 bg-paper-50 p-6">
       <p className="text-xs font-semibold uppercase tracking-[0.1em] text-signal-600">{card.q}</p>
       <p className="mt-3 font-serif text-2xl leading-snug text-ink-950">{card.a}</p>
-      <p className="mt-3 text-sm leading-relaxed text-ink-500">{card.why}</p>
+      {whyLines.map((line, i) => (
+        <p key={i} className="mt-3 text-sm leading-relaxed text-ink-500">
+          {line}
+        </p>
+      ))}
     </div>
   );
 }
@@ -72,18 +78,23 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </p>
       </section>
 
-      <section className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
+      <p className="mx-auto max-w-lg text-center text-sm font-medium text-ink-600">{KEY_PROBLEM}</p>
+
+      <section className="mx-auto mt-6 grid max-w-3xl grid-cols-1 gap-4 sm:grid-cols-2">
         {PROBLEM_STATS.map((p) => (
-          <div key={p.label} className="rounded-lg border border-ink-900/10 bg-paper-50 p-5 text-center">
-            <p className="font-serif text-3xl text-signal-600">{p.stat}</p>
-            <p className="mt-1 text-sm font-medium text-ink-900">{p.label}</p>
-            <p className="mt-1.5 text-xs leading-relaxed text-ink-500">{p.detail}</p>
+          <div key={p.caption} className="rounded-lg border border-ink-900/10 bg-paper-50 p-5 text-center">
+            <p className="text-xs leading-relaxed text-ink-500">{p.caption}</p>
+            <p className="mt-2 font-serif text-3xl text-signal-600">{p.stat}</p>
+            <p className="mt-1 text-sm font-medium text-ink-900">{p.detail}</p>
           </div>
         ))}
       </section>
-      <p className="mx-auto mt-4 max-w-lg text-center text-sm font-medium text-ink-600">{ROOT_CAUSE}</p>
 
-      <section className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <p className="mt-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+        {SOLUTION_LABEL}
+      </p>
+
+      <section className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {THESIS_CARDS.map((card) => (
           <ThesisCard key={card.q} card={card} />
         ))}
