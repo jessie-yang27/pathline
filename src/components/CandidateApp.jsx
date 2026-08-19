@@ -63,7 +63,9 @@ export default function CandidateApp() {
           surveyCompleted={surveyCompleted}
           onStartAssessment={(sectionId) => {
             setActiveSectionId(sectionId);
-            go(VIEWS.READINESS);
+            // Only Behavioral runs the full recording/liveness-check gate for this demo;
+            // Product Sense and AI Fluency skip straight to the assessment.
+            go(sectionId === "behavioral" ? VIEWS.READINESS : VIEWS.ASSESSMENT);
           }}
           onStartSurvey={() => go(VIEWS.INTAKE)}
           onViewCompanies={() => go(VIEWS.COMPANIES)}

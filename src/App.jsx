@@ -1,6 +1,7 @@
 import { useState } from "react";
 import CandidateApp from "./components/CandidateApp";
 import RecruiterApp from "./components/RecruiterApp";
+import RubricView from "./components/RubricView";
 import WhyPathline from "./components/story/WhyPathline";
 import WhyBetter from "./components/story/WhyBetter";
 import HowBuilt from "./components/story/HowBuilt";
@@ -33,6 +34,21 @@ function TopSwitcher({ mode, setMode }) {
             }`}
           >
             Bonus
+          </span>
+        </button>
+        <button
+          onClick={() => setMode("rubric")}
+          className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium transition ${
+            mode === "rubric" ? "bg-ink-900 text-paper-50" : "text-ink-500 hover:text-ink-900"
+          }`}
+        >
+          Rubric view
+          <span
+            className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+              mode === "rubric" ? "bg-signal-500/30 text-paper-50" : "bg-signal-500/15 text-signal-700"
+            }`}
+          >
+            Internal
           </span>
         </button>
       </div>
@@ -77,6 +93,7 @@ function App() {
       <TopSwitcher mode={mode} setMode={setMode} />
       {mode === "candidate" && <CandidateApp />}
       {mode === "recruiter" && <RecruiterApp />}
+      {mode === "rubric" && <RubricView />}
       {STORY_MODES.includes(mode) && (
         <>
           {mode === "why" && <WhyPathline onNavigate={setMode} onBackToProduct={backToProduct} />}

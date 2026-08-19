@@ -21,16 +21,19 @@ grading. All state lives in React on the client.
 4. **Assessment, per section** — Behavioral (20 min, 3 questions), Product
    Sense (20 min, 1 core design question), and AI Fluency (15 min, a mock
    "connect GitHub" gate then 3 questions) are each started independently
-   from the dashboard and run through their own:
-   - **Readiness gate** — a skimmable recording-consent screen (camera +
-     screen recorded, proves it's really you, Pathline-only), a 2-question
-     visual liveness check (shape-sequence patterns answered by mock voice
-     capture, not clickable options), then "I'm ready" (→ mock camera/
-     screen permissions → the assessment) or "Not ready yet" (→ training
-     materials, with a way back to the gate)
-   - **The assessment itself** — no text box. Each question is answered by
-     a large mock video-recording panel, wrapped in a proctoring shell
-     (recording indicator + timer). No back/home nav appears here.
+   from the dashboard. **Only Behavioral runs the full recording/proctoring
+   flow** for this demo — Product Sense and AI Fluency skip straight to the
+   assessment with a plain text answer box, no recording:
+   - **Readiness gate** *(Behavioral only)* — a skimmable recording-consent
+     screen (camera + screen recorded, proves it's really you,
+     Pathline-only), a 2-question visual liveness check (shape-sequence
+     patterns answered by mock voice capture, not clickable options), then
+     "I'm ready" (→ mock camera/screen permissions → the assessment) or
+     "Not ready yet" (→ training materials, with a way back to the gate)
+   - **The assessment itself** — Behavioral answers each question via a
+     large mock video-recording panel under a proctoring shell (recording
+     indicator + timer); Product Sense and AI Fluency use a plain textarea
+     instead. No back/home nav appears on the assessment screen itself.
    - Finishing an assessment returns straight to the dashboard, with that
      section marked complete and its score visible immediately.
 5. **Results** *(optional, linked from the dashboard)* — full score
@@ -50,6 +53,20 @@ recruiter view**: a ranked candidate dashboard with a live-resorting rubric
 immediately) and a candidate detail view with the full score breakdown plus
 a Product Sense response excerpt. The recruiter view is intentionally
 lighter than the candidate flow and labeled "Bonus" in the UI.
+
+## Rubric view
+
+A third top-level view (alongside Candidate and Recruiter), labeled
+"Internal" in the switcher since candidates never see it: shows what a
+perfect response looks like for each of the three assessment sections —
+Behavioral ("zero-to-one" / "entrepreneurial" language, impactful stories,
+startup fit, enough experience, STAR format), Product Sense (a north-star
+framework covering user, pain point, solution, success and guardrail
+metrics, prioritized with reasoning for what didn't make the cut), and AI
+Fluency (GitHub activity thresholds — repos and build sessions — plus
+answer accuracy and depth). Every criterion is fully customizable per
+company: reorder by priority, edit the text, remove it, add new ones, or
+tune the numeric thresholds (e.g. "at least 5 repositories") inline.
 
 ## Story pages
 
