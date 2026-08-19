@@ -48,6 +48,22 @@ immediately) and a candidate detail view with the full score breakdown plus
 a Product Sense response excerpt. The recruiter view is intentionally
 lighter than the candidate flow and labeled "Bonus" in the UI.
 
+## Story pages
+
+The same top-level switcher also links to three narrative pages for the live
+walkthrough — not part of the clickable product flow, and visually distinct
+via a dark banner header:
+
+- **Why Pathline?** — the thesis as a pull-quote, a 6-card grid of key
+  product decisions, the candidate↔company connection flow, North Star /
+  "not optimizing for" callouts, and the cold-start plan
+- **Why We're Better** — a competitor comparison (Indeed/Google, LinkedIn,
+  Wellfound, Paraform, Otta) with color-coded candidate/recruiter strength
+  badges, Pathline's row highlighted at the top
+- **How We Built This** — a 6-step timeline of the actual build process
+  (Claude, Wispr Flow, Claude Code, Vercel), with a featured "turning point"
+  moment and the best prompt of the project as a closing pull-quote
+
 ## Run locally
 
 ```bash
