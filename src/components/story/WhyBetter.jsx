@@ -53,6 +53,13 @@ export default function WhyBetter({ onNavigate, onBackToProduct }) {
       </section>
 
       <section className="mt-10">
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          Same comparison, plotted
+        </p>
+        <PositioningGraph />
+      </section>
+
+      <section className="mt-10">
         <div className="hidden gap-4 px-5 sm:grid sm:grid-cols-[180px_1fr_1fr]">
           <span />
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">Candidate experience</p>
@@ -65,13 +72,6 @@ export default function WhyBetter({ onNavigate, onBackToProduct }) {
             <CompetitorRow key={row.name} row={row} />
           ))}
         </div>
-      </section>
-
-      <section className="mt-10">
-        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
-          Same comparison, plotted
-        </p>
-        <PositioningGraph />
       </section>
     </StoryShell>
   );

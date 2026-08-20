@@ -15,7 +15,7 @@ function toY(value) {
 // Label offsets are hand-placed per point so they stay legible at these
 // specific coordinates rather than overlapping the dot or a neighbor.
 const POINTS = [
-  { name: "Pathline", x: 90, y: 70, labelDx: -12, labelDy: -10, anchor: "end", highlighted: true },
+  { name: "Pathline", x: 90, y: 80, labelDx: -12, labelDy: -10, anchor: "end", highlighted: true },
   { name: "Wellfound", x: 80, y: 60, labelDx: -12, labelDy: 18, anchor: "end" },
   { name: "Paraform", x: 60, y: 70, labelDx: -12, labelDy: -10, anchor: "end" },
   { name: "Otta", x: 50, y: 20, labelDx: 12, labelDy: -8, anchor: "start" },
