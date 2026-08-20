@@ -10,7 +10,12 @@ grading. All state lives in React on the client.
 
 ## Flow
 
-1. **Landing** — thesis and CTA
+1. **Landing** — thesis and CTA, with a short explainer of what the
+   assessment actually is above the score-preview widget, a "built with PMs
+   from OpenAI / Anthropic / Cursor / Granola / Vercel / Perplexity" trust
+   strip, a chart visualizing how the assessment lines up a candidate's
+   scored skills against what recruiters are looking for (the overlap is
+   the match), and a row of candidate testimonials
 2. **Dashboard** — the hub. Three independent assessment cards, a survey
    card ("tell us about the job you want"), and a link to browse companies.
    No fixed order — this is also where every assessment returns to when
@@ -28,8 +33,8 @@ grading. All state lives in React on the client.
    AI Fluency skip straight from the dashboard into the recorded assessment:
    - **Readiness gate** *(Behavioral only)* — a skimmable recording-consent
      screen (camera + screen recorded, proves it's really you,
-     Pathline-only), a 2-question visual liveness check (shape-sequence
-     patterns answered by mock voice capture, not clickable options), then
+     Pathline-only), a single "which object comes next" visual liveness
+     check (answered by mock voice capture, not by clicking an option), then
      "I'm ready" (→ mock camera/screen permissions → the assessment) or
      "Not ready yet" (→ training materials, with a way back to the gate)
    - No back/home nav appears on the assessment screen itself.

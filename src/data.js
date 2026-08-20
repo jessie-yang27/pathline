@@ -181,9 +181,59 @@ export const INTAKE_DEFAULTS = {
   workLifeBalance: 3,
 };
 
-export const SHAPE_SEQUENCE_QUESTIONS = [
-  { id: "s1", shapes: ["circle", "square", "circle", "square", "circle"] },
-  { id: "s2", shapes: ["triangle", "circle", "triangle", "circle", "triangle"] },
+// A single "which object comes next" visual pattern used for the liveness
+// check. Panels and options are described as line segments (0-100 box
+// space) plus an optional red dot, rendered by PatternBox in ReadinessGate.
+export const LIVENESS_PATTERN = {
+  sequence: [
+    { lines: [{ x1: 0, y1: 0, x2: 100, y2: 100 }], dot: { x: 75, y: 75 } },
+    { lines: [{ x1: 50, y1: 0, x2: 50, y2: 100 }], dot: null },
+    { lines: [{ x1: 0, y1: 100, x2: 100, y2: 0 }], dot: { x: 27, y: 73 } },
+  ],
+  options: [
+    { key: "A", lines: [{ x1: 0, y1: 50, x2: 100, y2: 50 }], dot: null },
+    { key: "B", lines: [{ x1: 0, y1: 50, x2: 100, y2: 50 }], dot: { x: 65, y: 50 } },
+    {
+      key: "C",
+      lines: [
+        { x1: 50, y1: 50, x2: 100, y2: 50 },
+        { x1: 0, y1: 100, x2: 50, y2: 50 },
+      ],
+      dot: { x: 50, y: 50 },
+    },
+    { key: "D", lines: [{ x1: 50, y1: 0, x2: 50, y2: 100 }], dot: null },
+    {
+      key: "E",
+      lines: [
+        { x1: 50, y1: 0, x2: 50, y2: 100 },
+        { x1: 0, y1: 100, x2: 50, y2: 50 },
+      ],
+      dot: { x: 50, y: 50 },
+    },
+  ],
+};
+
+export const BUILT_WITH_COMPANIES = ["OpenAI", "Anthropic", "Cursor", "Granola", "Vercel", "Perplexity"];
+
+export const TESTIMONIALS = [
+  {
+    name: "Maya Chen",
+    role: "Senior PM, Series B fintech — landed via Pathline",
+    quote:
+      "The assessment forced me to actually structure my product-sense answers instead of winging them. I walked into every intro call already knowing my score was legit.",
+  },
+  {
+    name: "Tomás Rivera",
+    role: "PM, seed-stage healthtech — landed via Pathline",
+    quote:
+      "I'd been ghosted by six recruiters in a row. Pathline's the first place a company reached out to me first — because they'd already seen my score.",
+  },
+  {
+    name: "Aisha Bello",
+    role: "PM, Series A dev-tools startup — landed via Pathline",
+    quote:
+      "The feedback after my behavioral section alone was worth more than any resume review I've ever paid for.",
+  },
 ];
 
 export const TRAINING_RESOURCES = [

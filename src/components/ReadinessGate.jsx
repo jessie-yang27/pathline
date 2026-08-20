@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { ScreenHeader, PrimaryButton, SecondaryButton, Kicker, StepDots } from "./ui";
-import { SHAPE_SEQUENCE_QUESTIONS } from "../data";
+import { LIVENESS_PATTERN } from "../data";
 import { formatElapsed } from "../utils";
 
 const STEPS = ["Recording notice", "Liveness check", "Ready?"];
@@ -68,25 +68,14 @@ function MicIcon() {
   );
 }
 
-function Shape({ type }) {
-  const stroke = "stroke-ink-700";
-  if (type === "circle") {
-    return (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <circle cx="12" cy="12" r="8" className={stroke} strokeWidth="2" />
-      </svg>
-    );
-  }
-  if (type === "square") {
-    return (
-      <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-        <rect x="4" y="4" width="16" height="16" rx="1.5" className={stroke} strokeWidth="2" />
-      </svg>
-    );
-  }
+function PatternBox({ pattern, size = 88 }) {
   return (
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
-      <path d="M12 4 21 20H3Z" className={stroke} strokeWidth="2" strokeLinejoin="round" />
+    <svg width={size} height={size} viewBox="0 0 100 100" className="block">
+      <rect x="2" y="2" width="96" height="96" rx="2" className="fill-paper-50 stroke-ink-900" strokeWidth="2.5" />
+      {pattern.lines.map((l, i) => (
+        <line key={i} x1={l.x1} y1={l.y1} x2={l.x2} y2={l.y2} className="stroke-ink-900" strokeWidth="2.5" />
+      ))}
+      {pattern.dot && <circle cx={pattern.dot.x} cy={pattern.dot.y} r="9" fill="#dc2626" />}
     </svg>
   );
 }
@@ -159,43 +148,56 @@ function VoiceAnswer({ answered, onChange }) {
 }
 
 function LivenessCheckStep({ answered, setAnswered, onContinue, onBack }) {
-  const allAnswered = SHAPE_SEQUENCE_QUESTIONS.every((q) => answered[q.id]);
+  const isAnswered = Boolean(answered.pattern);
 
   return (
     <div>
       <Kicker>Quick check</Kicker>
       <h2 className="mt-4 font-serif text-3xl text-ink-950">Prove you're really here</h2>
       <p className="mt-3 max-w-xl text-ink-600">
-        Two visual patterns, not scored. Answer out loud — it's not something a script reading the
-        screen could fake.
+        One visual pattern, not scored. Say your answer out loud — it's not something a script
+        reading the screen could fake.
       </p>
 
-      <div className="mt-8 space-y-6">
-        {SHAPE_SEQUENCE_QUESTIONS.map((q, i) => (
-          <div key={q.id} className="rounded-sm border border-ink-900/10 bg-paper-100 p-5">
-            <p className="text-sm font-medium text-ink-900">{i + 1}. What comes next in the pattern?</p>
-            <div className="mt-4 flex items-center gap-3">
-              {q.shapes.map((s, si) => (
-                <div
-                  key={si}
-                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-sm border border-ink-900/10 bg-paper-50"
-                >
-                  <Shape type={s} />
-                </div>
-              ))}
-              <span className="text-ink-300" aria-hidden>→</span>
-              <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-sm border-2 border-dashed border-signal-600/40 bg-signal-500/5 font-serif text-xl text-signal-600">
-                ?
+      <div className="mt-8 rounded-sm border border-ink-900/10 bg-paper-100 p-5">
+        <p className="text-sm font-medium text-ink-900">Which object comes next?</p>
+
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          {LIVENESS_PATTERN.sequence.map((p, i) => (
+            <div
+              key={i}
+              className="flex h-20 w-20 shrink-0 items-center justify-center rounded-sm border border-ink-900/10 bg-paper-50 sm:h-24 sm:w-24"
+            >
+              <PatternBox pattern={p} size={80} />
+            </div>
+          ))}
+          <span className="text-ink-300" aria-hidden>→</span>
+          <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-sm border-2 border-dashed border-signal-600/40 bg-signal-500/5 font-serif text-2xl text-signal-600 sm:h-24 sm:w-24">
+            ?
+          </div>
+        </div>
+
+        <p className="mt-6 text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">Options</p>
+        <div className="mt-3 grid grid-cols-3 gap-4 sm:grid-cols-5">
+          {LIVENESS_PATTERN.options.map((o) => (
+            <div key={o.key} className="flex flex-col items-center gap-2">
+              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-ink-900/20 text-xs font-semibold text-ink-600">
+                {o.key}
+              </span>
+              <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-sm border border-ink-900/10 bg-paper-50">
+                <PatternBox pattern={o} size={60} />
               </div>
             </div>
-            <VoiceAnswer answered={Boolean(answered[q.id])} onChange={(val) => setAnswered(q.id, val)} />
-          </div>
-        ))}
+          ))}
+        </div>
+
+        <p className="mt-6 text-xs text-ink-500">Say the letter you'd pick, out loud.</p>
+        <VoiceAnswer answered={isAnswered} onChange={(val) => setAnswered("pattern", val)} />
       </div>
 
       <div className="mt-8 flex items-center justify-between border-t border-ink-900/10 pt-6">
         <SecondaryButton onClick={onBack}>Back</SecondaryButton>
-        <PrimaryButton onClick={onContinue} disabled={!allAnswered}>
+        <PrimaryButton onClick={onContinue} disabled={!isAnswered}>
           Continue <span aria-hidden>→</span>
         </PrimaryButton>
       </div>

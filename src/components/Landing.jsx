@@ -1,5 +1,6 @@
 import { Logo, PrimaryButton, Kicker } from "./ui";
-import { ASSESSMENT_SECTIONS } from "../data";
+import MatchGraph from "./MatchGraph";
+import { ASSESSMENT_SECTIONS, BUILT_WITH_COMPANIES, TESTIMONIALS } from "../data";
 
 export default function Landing({ onStart }) {
   return (
@@ -62,6 +63,13 @@ export default function Landing({ onStart }) {
 
           <div className="relative">
             <div className="absolute -inset-4 -z-10 hidden rounded-lg bg-gradient-to-br from-signal-500/10 to-verified-600/10 lg:block" />
+            <p className="mb-3 text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+              The Pathline Assessment
+            </p>
+            <p className="mb-4 text-sm leading-relaxed text-ink-600">
+              One sitting, three parts — Behavioral, Product Sense, and AI Fluency — scored the
+              moment you finish and shown to companies exactly as you see it below.
+            </p>
             <div className="rounded-lg border border-ink-900/10 bg-paper-50 p-7 shadow-[0_1px_0_rgba(20,20,15,0.04)]">
               <div className="flex items-center justify-between border-b border-ink-900/10 pb-5">
                 <div>
@@ -99,6 +107,50 @@ export default function Landing({ onStart }) {
             </div>
           </div>
         </div>
+
+        <section className="mt-20 border-t border-ink-900/10 pt-10">
+          <p className="text-center text-xs uppercase tracking-[0.14em] text-ink-400">
+            The assessment was built with PMs from
+          </p>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
+            {BUILT_WITH_COMPANIES.map((c) => (
+              <span key={c} className="font-serif text-lg text-ink-400 sm:text-xl">
+                {c}
+              </span>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-28 border-t border-ink-900/10 pt-16">
+          <Kicker>How the assessment gets you matched</Kicker>
+          <div className="mt-8 grid grid-cols-1 gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
+            <div>
+              <h2 className="font-serif text-3xl text-ink-950">
+                Take the assessment. Uplevel your skills. Get matched.
+              </h2>
+              <p className="mt-4 max-w-md leading-relaxed text-ink-600">
+                Every assessment scores you across the same dimensions companies are actually
+                hiring for. The more your skills line up with what recruiters want, the more
+                precisely you get matched — and the feedback after each section shows you
+                exactly where to close the gap.
+              </p>
+            </div>
+            <MatchGraph />
+          </div>
+        </section>
+
+        <section className="mt-28 border-t border-ink-900/10 pt-16">
+          <Kicker>What candidates are saying</Kicker>
+          <div className="mt-8 grid grid-cols-1 gap-6 md:grid-cols-3">
+            {TESTIMONIALS.map((t) => (
+              <div key={t.name} className="rounded-lg border border-ink-900/10 bg-paper-50 p-6">
+                <p className="font-serif text-lg leading-snug text-ink-950">"{t.quote}"</p>
+                <p className="mt-4 text-sm font-medium text-ink-900">{t.name}</p>
+                <p className="text-xs text-ink-500">{t.role}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         <section className="mt-28 border-t border-ink-900/10 pt-16">
           <Kicker>Why not just use LinkedIn or a recruiter</Kicker>
