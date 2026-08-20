@@ -1,5 +1,6 @@
 import StoryShell from "./StoryShell";
-import { BETTER_HERO, COMPETITORS, PATHLINE_ROW, THE_PATTERN } from "../../storyData";
+import PositioningGraph from "./PositioningGraph";
+import { BETTER_HERO, BETTER_DESCRIPTION, COMPETITORS, PATHLINE_ROW, THE_PATTERN } from "../../storyData";
 
 const BADGE_STYLES = {
   WEAK: "border-red-900/15 bg-red-950/5 text-red-800",
@@ -44,7 +45,7 @@ export default function WhyBetter({ onNavigate, onBackToProduct }) {
       onBackToProduct={onBackToProduct}
       kicker="The Competition"
       title={BETTER_HERO}
-      subtitle="We're starting with PM candidates, but excited to serve all roles."
+      subtitle={BETTER_DESCRIPTION}
     >
       <section className="rounded-lg border border-ink-900/10 bg-paper-50 p-6">
         <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-600">The pattern</p>
@@ -64,6 +65,13 @@ export default function WhyBetter({ onNavigate, onBackToProduct }) {
             <CompetitorRow key={row.name} row={row} />
           ))}
         </div>
+      </section>
+
+      <section className="mt-10">
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          Same comparison, plotted
+        </p>
+        <PositioningGraph />
       </section>
     </StoryShell>
   );

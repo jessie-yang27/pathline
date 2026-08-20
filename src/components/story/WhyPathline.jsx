@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import StoryShell from "./StoryShell";
+import ScorePreviewCard from "../ScorePreviewCard";
 import { SecondaryButton } from "../ui";
 import {
   THESIS_QUOTE,
   KEY_PROBLEM,
   PROBLEM_STATS,
   SOLUTION_LABEL,
+  DECISIONS_LABEL,
   THESIS_CARDS,
   CONNECTION_STEPS,
   NORTH_STAR,
@@ -19,8 +21,9 @@ const SLIDES = [
   { id: "belief", label: "Our belief" },
   { id: "problem", label: "Key problem" },
   { id: "metrics", label: "North star" },
-  { id: "solution", label: "The solution" },
-  { id: "connection", label: "Moment of connection" },
+  { id: "hypothesis", label: "Hypothesis" },
+  { id: "connection", label: "The solution" },
+  { id: "solution", label: "The decisions" },
   { id: "coldstart", label: "Cold start" },
 ];
 
@@ -145,7 +148,7 @@ function QuadrantMatrix({ axisY, axisX, rowTop, rowBottom, colLeft, colRight, to
         <QuadrantCell item={bottomLeft} />
         <QuadrantCell item={bottomRight} />
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-ink-500">{caption}</p>
+      {caption && <p className="mt-3 text-xs leading-relaxed text-ink-500">{caption}</p>}
     </div>
   );
 }
@@ -171,10 +174,50 @@ function CandidateJobRatio() {
           </div>
         </div>
       </div>
-      <p className="mt-4 text-xs leading-relaxed text-ink-500">
-        Far more candidates than open roles — it's infeasible for a recruiter to initiate among
-        thousands of candidates, so candidates have to be the ones who raise their hand.
-      </p>
+    </div>
+  );
+}
+
+function RequestGrid({ highlightHigh }) {
+  const HIGH_CELLS = new Set([14, 15, 20, 21]);
+  return (
+    <div className="grid grid-cols-6 gap-1.5">
+      {Array.from({ length: 36 }).map((_, i) => {
+        const isHigh = highlightHigh && HIGH_CELLS.has(i);
+        return (
+          <div
+            key={i}
+            className={`aspect-square rounded-[3px] ${
+              isHigh ? "bg-signal-500 ring-2 ring-signal-600" : "bg-ink-900/10"
+            }`}
+          />
+        );
+      })}
+    </div>
+  );
+}
+
+function BeforeAfterGrid() {
+  return (
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">Before</p>
+        <div className="mt-3">
+          <RequestGrid highlightHigh={false} />
+        </div>
+        <p className="mt-3 text-xs leading-relaxed text-ink-500">
+          36 job requests sent — every one of them low quality.
+        </p>
+      </div>
+      <div>
+        <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">After</p>
+        <div className="mt-3">
+          <RequestGrid highlightHigh />
+        </div>
+        <p className="mt-3 text-xs leading-relaxed text-ink-500">
+          Same 36 — but 4 are surfaced as high quality, restricted to roles that actually fit.
+        </p>
+      </div>
     </div>
   );
 }
@@ -242,7 +285,6 @@ function ThesisCarousel() {
             colRight="High"
             topRight={{ label: "Candidates", tone: "accent" }}
             bottomLeft={{ label: "Recruiters", tone: "muted" }}
-            caption="Recruiters have a large pool to draw from, so any one hire is lower urgency and lower relative impact. Candidates don't — that's the wedge."
           />
         )}
 
@@ -261,6 +303,12 @@ function ThesisCarousel() {
         )}
 
         {card.visual === "candidateJobRatio" && <CandidateJobRatio />}
+
+        {card.visual === "scorePreview" && (
+          <div className="mt-6">
+            <ScorePreviewCard />
+          </div>
+        )}
 
         {card.guardrails && <GuardrailList items={card.guardrails} />}
 
@@ -393,7 +441,7 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </div>
       </Slide>
 
-      <Slide id="metrics" nextId="solution">
+      <Slide id="metrics" nextId="hypothesis">
         <div className="mx-auto grid w-full max-w-xl grid-cols-1 gap-6">
           <CalloutBox
             title={NORTH_STAR.title}
@@ -408,29 +456,35 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
             definition={NOT_OPTIMIZING.definition}
             why={NOT_OPTIMIZING.why}
           />
-          <div className="rounded-lg border border-dashed border-ink-900/20 bg-paper-50 p-6">
-            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
-              {MATCH_HYPOTHESIS.title}
-            </p>
-            <p className="mt-3 text-base leading-relaxed text-ink-800">{MATCH_HYPOTHESIS.statement}</p>
-          </div>
         </div>
       </Slide>
 
-      <Slide id="solution" nextId="connection" className="max-w-4xl">
-        <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
-          {SOLUTION_LABEL}
+      <Slide id="hypothesis" nextId="connection">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          {MATCH_HYPOTHESIS.title}
         </p>
-        <ThesisCarousel />
+        <p className="mx-auto mt-4 max-w-2xl text-center font-serif text-2xl leading-snug text-ink-950 sm:text-3xl">
+          {MATCH_HYPOTHESIS.statement}
+        </p>
+        <div className="mt-10 w-full max-w-2xl rounded-lg border border-ink-900/10 bg-paper-50 p-6 sm:p-8">
+          <BeforeAfterGrid />
+        </div>
       </Slide>
 
-      <Slide id="connection" nextId="coldstart">
+      <Slide id="connection" nextId="solution">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
-          The moment of connection
+          {SOLUTION_LABEL}
         </p>
         <div className="mt-8 w-full">
           <ConnectionFlow />
         </div>
+      </Slide>
+
+      <Slide id="solution" nextId="coldstart" className="max-w-4xl">
+        <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          {DECISIONS_LABEL}
+        </p>
+        <ThesisCarousel />
       </Slide>
 
       <Slide id="coldstart">

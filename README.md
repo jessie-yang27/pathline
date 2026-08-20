@@ -85,34 +85,38 @@ from the actual take-home doc, so it reads in the author's own words rather
 than a rewritten summary:
 
 - **Why Pathline?** — presented as a slide deck rather than a scrolling
-  article: six full-viewport sections (belief pull-quote, key-problem
-  stats, North Star / "not optimizing for" callouts, the solution, the
-  connection flow, cold-start plan), each one filling the screen with
+  article: seven full-viewport sections, each filling the screen with
   generous space so it reads as a standalone slide when presented on a
   desktop, and each with a clickable down-arrow at the bottom to advance
   to the next one. Scroll-snap glides between sections, and a fixed
   dot-nav on the right tracks the active slide (via IntersectionObserver)
-  and jumps to any section on click.
-  - The key-problem slide animates faint resume icons drifting behind the
-    two stat cards (a nod to the volume problem).
-  - North Star / "not optimizing for" sit stacked, followed by a
-    "Hypothesis" card: increasing candidate quality and restricting the
-    jobs candidates apply to should raise match rate.
-  - The solution section is a one-at-a-time card carousel — a numbered
-    menu of the seven key product decisions on the left, Prev/Next
-    controls on the right, each with its own small 2×2 or ratio visual:
-    "who's the wedge" (urgency × impact — candidates vs. recruiters),
-    "why PM roles first" (its own card right after it), "unit of signal"
-    (accuracy × speed to scale — human vs. AI assessment), "who
-    initiates" (a candidate-vs-job-count ratio), and "guardrail metrics"
-    (fraud rate, drop-off rate, and bottom-of-the-bucket risk, each
-    paired with its mitigation).
-  - The cold-start plan is a vertical, numbered timeline, each step
-    labeled with what it's solving for (Credibility, Candidate
-    acquisition, Recruiter acquisition).
+  and jumps to any section on click. In order: **belief** (pull-quote),
+  **key problem** (two stat cards, with faint resume icons animating in
+  the background as a nod to the volume problem), **North Star / "not
+  optimizing for"** (stacked callouts), **hypothesis** (increasing
+  candidate quality and restricting the jobs candidates apply to should
+  raise match rate — illustrated with a before/after 6×6 grid of job
+  requests, all low quality, with a 2×2 subset highlighted in mustard
+  once quality is restricted), **the solution** (the candidate-to-company
+  connection flow, now including "take job preferences survey" and "see
+  list of companies and send score"), **the decisions** (a one-at-a-time
+  card carousel — a numbered menu of the seven key product decisions on
+  the left, Prev/Next controls on the right, each with its own small 2×2
+  or ratio visual: "who's the wedge" — urgency × impact, candidates vs.
+  recruiters; "why PM roles first" as its own card right after it; "unit
+  of signal" — accuracy × speed to scale, human vs. AI assessment; "who
+  initiates" — a candidate-vs-job-count ratio; "how transparent are we"
+  — the same score-preview card shown on the landing page; and
+  "guardrail metrics" — fraud rate, drop-off rate, and bottom-of-the-
+  bucket risk, each paired with its mitigation), and **cold-start plan**
+  (a vertical, numbered timeline, each step labeled with what it's
+  solving for — Credibility, Candidate acquisition, Recruiter
+  acquisition).
 - **Why We're Better** — a competitor comparison (Indeed/Google, LinkedIn,
   Wellfound, Paraform, Otta) with color-coded candidate/recruiter strength
-  badges, Pathline's row highlighted at the top
+  badges, Pathline's row highlighted at the top, plus the same comparison
+  plotted as a scatter graph (candidate experience × recruiter experience)
+  underneath
 - **How We Built This** — a 6-step timeline of the actual build process
   (Claude, Granola, Wispr Flow, Claude Code, Vercel), with a featured
   "turning point" moment and the best prompt of the project as a closing

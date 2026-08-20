@@ -32,6 +32,8 @@ export const PROBLEM_STATS = [
 
 export const SOLUTION_LABEL = "The Solution: Pathline";
 
+export const DECISIONS_LABEL = "Walking Through the Decisions";
+
 export const THESIS_CARDS = [
   {
     q: "Who's the wedge?",
@@ -47,10 +49,7 @@ export const THESIS_CARDS = [
   {
     q: "What's the unit of signal?",
     a: "A standardized assessment score.",
-    why: [
-      "The assessment 1) increases quality by helping the candidate self-improve, and 2) shares meaning beyond a resume to the recruiter.",
-      "I'd first thought about a human recruiter doing this assessment — but a virtual, standardized version gets there faster and scales further.",
-    ],
+    why: "The assessment 1) increases quality by helping the candidate self-improve, and 2) shares meaning beyond a resume to the recruiter.",
     visual: "accuracySpeed",
   },
   {
@@ -63,11 +62,12 @@ export const THESIS_CARDS = [
     q: "How transparent are we?",
     a: "Full score, hidden weights.",
     why: "We fully show the score to both sides, but hide the exact weights of the scoring model. Transparency builds fairness and trust; hidden weights protect against gaming it.",
+    visual: "scorePreview",
   },
   {
     q: "What are the guardrail metrics?",
     a: "Fraud rate, drop-off rate, bottom-of-the-bucket risk.",
-    why: "Proctoring with screen recording and rotating questions are the first line of defense — these three metrics catch what slips through.",
+    why: "Proctoring with screen recording and rotating questions are the first line of defense — these guardrail metrics protect against the key risks.",
     guardrails: [
       {
         metric: "Fraud rate",
@@ -96,7 +96,8 @@ export const THESIS_CARDS = [
 export const CONNECTION_STEPS = [
   { icon: "📝", label: "Candidate takes assessment" },
   { icon: "📊", label: "Gets scored" },
-  { icon: "🙋", label: "Candidate expresses interest (sends score)" },
+  { icon: "🗒️", label: "Take job preferences survey" },
+  { icon: "🙋", label: "See list of companies and send score" },
   { icon: "📋", label: "Company sees candidates ranked on their rubric" },
   { icon: "🤝", label: "Company expresses interest" },
   { icon: "🚀", label: "Match begins" },
@@ -143,8 +144,10 @@ export const COLD_START_STEPS = [
 export const COLD_START_CAPTION =
   "Give something away for free to attract candidates first — then candidates become the asset that attracts recruiting.";
 
-export const BETTER_HERO =
-  "The top competitors win by focusing on a narrow segment. Pathline builds for the candidate first, to create the best experience for all.";
+export const BETTER_HERO = "The top competitors win by focusing on a narrow segment.";
+
+export const BETTER_DESCRIPTION =
+  "Pathline builds for the candidate first, to create the best experience for all. We're starting with PM candidates, but excited to serve all roles.";
 
 export const STRENGTH = { WEAK: "WEAK", MEDIUM: "MEDIUM", STRONG: "STRONG" };
 
@@ -183,7 +186,7 @@ export const PATHLINE_ROW = {
 };
 
 export const THE_PATTERN =
-  "The top competitors win by focusing on a specific niche (Wellfound narrows to startups) or one side of the marketplace (Paraform is built for the employer). Pathline's assessment score is what lets us be strong on both sides at once — without narrowing to one.";
+  "The top competitors win by focusing on a specific niche (Wellfound narrows to startups) or one side of the marketplace (Paraform is built for the employer).";
 
 export const BUILD_TIMELINE = [
   {
