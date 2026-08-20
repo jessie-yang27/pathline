@@ -32,15 +32,9 @@ export const PROBLEM_STATS = [
 
 export const SOLUTION_LABEL = "The Solution: Pathline";
 
-export const DECISIONS_LABEL = "Walking Through the Decisions";
+export const DECISIONS_LABEL = "A Few More Decisions";
 
 export const THESIS_CARDS = [
-  {
-    q: "Who's the wedge?",
-    a: "Candidates.",
-    why: "Candidates are higher urgency users — recruiters have a large pool to draw from, but candidates are also the root cause of the existing volume problem.",
-    visual: "urgencyImpact",
-  },
   {
     q: "Why PM roles first?",
     a: "To create expertise in one niche.",
@@ -63,28 +57,6 @@ export const THESIS_CARDS = [
     a: "Full score, hidden weights.",
     why: "We fully show the score to both sides, but hide the exact weights of the scoring model. Transparency builds fairness and trust; hidden weights protect against gaming it.",
     visual: "scorePreview",
-  },
-  {
-    q: "What are the guardrail metrics?",
-    a: "Fraud rate, drop-off rate, bottom-of-the-bucket risk.",
-    why: "Proctoring with screen recording and rotating questions are the first line of defense — these guardrail metrics protect against the key risks.",
-    guardrails: [
-      {
-        metric: "Fraud rate",
-        definition: "% of assessments flagged for cheating",
-        mitigation: "AI proctoring + rotating questions",
-      },
-      {
-        metric: "Drop-off rate",
-        definition: "% completion rate of the assessment",
-        mitigation: "Short, easy interviews + candidate testimonials",
-      },
-      {
-        metric: "Bottom-of-the-bucket risk",
-        definition: "Average time to match",
-        mitigation: "Feedback loop after every assessment",
-      },
-    ],
   },
   {
     q: "What are we NOT building?",
@@ -111,16 +83,49 @@ export const NORTH_STAR = {
 };
 
 export const NOT_OPTIMIZING = {
-  title: "Not Optimizing For (Yet)",
-  metric: "# of Requests",
-  definition: "Raw volume of match requests sent stays off the dashboard as a goal.",
-  why: "Chasing request volume just recreates the old spam problem. We care whether requests convert, not how many get sent.",
+  title: "Not Optimizing For",
+  metric: "# of Match Requests",
+  definition: "Volume of matches, and monetization, stay off the dashboard as goals for now.",
+  why: "Those come once quality and liquidity are proven — not before.",
 };
 
-export const MATCH_HYPOTHESIS = {
-  title: "Hypothesis",
-  statement:
-    "Increasing candidate quality and restricting the jobs they apply to will increase match rate.",
+export const WEDGE = {
+  kicker: "The Wedge",
+  title: "Built for candidates, not recruiters.",
+  reasons: [
+    {
+      title: "Higher urgency",
+      body: "Candidates have higher urgency to find a job than recruiters have to fill any one specific role.",
+      visual: "urgencyImpact",
+    },
+    {
+      title: "Bad signal in, bad matches out",
+      body: "My hypothesis: low match quality originates on the candidate side. Fixing that is more leverage than helping recruiters filter faster.",
+      visual: "beforeAfterGrid",
+    },
+  ],
+};
+
+export const RISKS = {
+  kicker: "Risks",
+  title: "Three risks I'm watching.",
+  items: [
+    {
+      metric: "Drop-off",
+      definition: "Is the assessment too hard or too long to complete?",
+      mitigation: "Short, easy interviews + candidate testimonials",
+    },
+    {
+      metric: "Fraud",
+      definition: "Proctoring and integrity checks keep the signal trustworthy.",
+      mitigation: "AI proctoring + rotating questions",
+    },
+    {
+      metric: "Bottom of the bucket",
+      definition: "Lower scorers risk getting permanently passed over as the pool grows.",
+      mitigation: "Feedback loop after every assessment",
+    },
+  ],
 };
 
 export const COLD_START_STEPS = [

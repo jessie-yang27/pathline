@@ -12,7 +12,8 @@ import {
   CONNECTION_STEPS,
   NORTH_STAR,
   NOT_OPTIMIZING,
-  MATCH_HYPOTHESIS,
+  WEDGE,
+  RISKS,
   COLD_START_STEPS,
   COLD_START_CAPTION,
 } from "../../storyData";
@@ -20,11 +21,12 @@ import {
 const SLIDES = [
   { id: "belief", label: "Our belief" },
   { id: "problem", label: "Key problem" },
+  { id: "wedge", label: "The wedge" },
   { id: "metrics", label: "North star" },
-  { id: "hypothesis", label: "Hypothesis" },
   { id: "connection", label: "The solution" },
-  { id: "solution", label: "The decisions" },
   { id: "coldstart", label: "Cold start" },
+  { id: "risks", label: "Risks" },
+  { id: "solution", label: "More decisions" },
 ];
 
 const FLOATING_RESUMES = [
@@ -415,7 +417,7 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </p>
       </Slide>
 
-      <Slide id="problem" nextId="metrics" className="relative max-w-6xl overflow-hidden">
+      <Slide id="problem" nextId="wedge" className="relative max-w-6xl overflow-hidden">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
           {FLOATING_RESUMES.map((r, i) => (
             <ResumeIcon
@@ -441,7 +443,43 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </div>
       </Slide>
 
-      <Slide id="metrics" nextId="hypothesis">
+      <Slide id="wedge" nextId="metrics">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          {WEDGE.kicker}
+        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-center font-serif text-3xl leading-snug text-ink-950 sm:text-4xl">
+          {WEDGE.title}
+        </p>
+        <div className="mt-10 grid w-full grid-cols-1 gap-6 lg:grid-cols-2">
+          <div className="rounded-lg border border-ink-900/10 bg-paper-50 p-6 sm:p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-signal-600">
+              {WEDGE.reasons[0].title}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-ink-700">{WEDGE.reasons[0].body}</p>
+            <QuadrantMatrix
+              axisY="Urgency"
+              axisX="Impact on quality"
+              rowTop="High"
+              rowBottom="Low"
+              colLeft="Low"
+              colRight="High"
+              topRight={{ label: "Candidates", tone: "accent" }}
+              bottomLeft={{ label: "Recruiters", tone: "muted" }}
+            />
+          </div>
+          <div className="rounded-lg border border-ink-900/10 bg-paper-50 p-6 sm:p-7">
+            <p className="text-xs font-semibold uppercase tracking-[0.12em] text-signal-600">
+              {WEDGE.reasons[1].title}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-ink-700">{WEDGE.reasons[1].body}</p>
+            <div className="mt-6">
+              <BeforeAfterGrid />
+            </div>
+          </div>
+        </div>
+      </Slide>
+
+      <Slide id="metrics" nextId="connection">
         <div className="mx-auto grid w-full max-w-xl grid-cols-1 gap-6">
           <CalloutBox
             title={NORTH_STAR.title}
@@ -459,19 +497,7 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </div>
       </Slide>
 
-      <Slide id="hypothesis" nextId="connection">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
-          {MATCH_HYPOTHESIS.title}
-        </p>
-        <p className="mx-auto mt-4 max-w-2xl text-center font-serif text-2xl leading-snug text-ink-950 sm:text-3xl">
-          {MATCH_HYPOTHESIS.statement}
-        </p>
-        <div className="mt-10 w-full max-w-2xl rounded-lg border border-ink-900/10 bg-paper-50 p-6 sm:p-8">
-          <BeforeAfterGrid />
-        </div>
-      </Slide>
-
-      <Slide id="connection" nextId="solution">
+      <Slide id="connection" nextId="coldstart">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
           {SOLUTION_LABEL}
         </p>
@@ -480,14 +506,7 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </div>
       </Slide>
 
-      <Slide id="solution" nextId="coldstart" className="max-w-4xl">
-        <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
-          {DECISIONS_LABEL}
-        </p>
-        <ThesisCarousel />
-      </Slide>
-
-      <Slide id="coldstart">
+      <Slide id="coldstart" nextId="risks">
         <div className="w-full max-w-2xl rounded-lg border border-ink-900/10 bg-paper-50 p-8 sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">Cold-start plan</p>
 
@@ -512,6 +531,25 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
             {COLD_START_CAPTION}
           </p>
         </div>
+      </Slide>
+
+      <Slide id="risks" nextId="solution">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          {RISKS.kicker}
+        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-center font-serif text-2xl leading-snug text-ink-950 sm:text-3xl">
+          {RISKS.title}
+        </p>
+        <div className="mt-10 w-full max-w-2xl">
+          <GuardrailList items={RISKS.items} />
+        </div>
+      </Slide>
+
+      <Slide id="solution" className="max-w-4xl">
+        <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          {DECISIONS_LABEL}
+        </p>
+        <ThesisCarousel />
       </Slide>
     </StoryShell>
   );
