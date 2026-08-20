@@ -56,7 +56,7 @@ export default function HowBuilt({ onNavigate, onBackToProduct }) {
       onBackToProduct={onBackToProduct}
       kicker="The Process"
       title="How We Built This"
-      subtitle="The honest version, told as a timeline — where AI helped, and where it deliberately didn't."
+      subtitle="More about our design process & AI tool usage"
     >
       <div className="relative">
         <div className="absolute bottom-2 left-4 top-2 w-px bg-ink-900/10" aria-hidden />

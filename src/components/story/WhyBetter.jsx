@@ -44,9 +44,14 @@ export default function WhyBetter({ onNavigate, onBackToProduct }) {
       onBackToProduct={onBackToProduct}
       kicker="The Competition"
       title={BETTER_HERO}
-      subtitle="Most players are strong on exactly one side of the marketplace. Here's the scoreboard."
+      subtitle="We're starting with PM candidates, but excited to serve all roles."
     >
-      <section>
+      <section className="rounded-lg border border-ink-900/10 bg-paper-50 p-6">
+        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-600">The pattern</p>
+        <p className="mt-3 max-w-3xl text-base leading-relaxed text-ink-700">{THE_PATTERN}</p>
+      </section>
+
+      <section className="mt-10">
         <div className="hidden gap-4 px-5 sm:grid sm:grid-cols-[180px_1fr_1fr]">
           <span />
           <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">Candidate experience</p>
@@ -59,11 +64,6 @@ export default function WhyBetter({ onNavigate, onBackToProduct }) {
             <CompetitorRow key={row.name} row={row} />
           ))}
         </div>
-      </section>
-
-      <section className="mt-10 rounded-lg border border-ink-900/10 bg-paper-50 p-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.14em] text-signal-600">The pattern</p>
-        <p className="mt-3 max-w-3xl text-base leading-relaxed text-ink-700">{THE_PATTERN}</p>
       </section>
     </StoryShell>
   );

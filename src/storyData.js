@@ -112,7 +112,8 @@ export const COLD_START_STEPS = [
 export const COLD_START_CAPTION =
   "Give something away for free to attract candidates first — then candidates become the asset that attracts recruiting.";
 
-export const BETTER_HERO = "The strongest players win by staying narrow. We're betting we don't have to.";
+export const BETTER_HERO =
+  "The top competitors win by focusing on a narrow segment. Pathline builds for the candidate first, to create the best experience for all.";
 
 export const STRENGTH = { WEAK: "WEAK", MEDIUM: "MEDIUM", STRONG: "STRONG" };
 
@@ -157,14 +158,14 @@ export const BUILD_TIMELINE = [
   {
     n: "01",
     icon: "📄",
-    label: "Fed it everything",
+    label: "Context Dump",
     body: "Uploaded the take-home assignment doc, Granola meeting transcripts, and the job description.",
     tools: ["Claude", "Granola"],
   },
   {
     n: "02",
     icon: "🗺️",
-    label: "Asked for a map, not an answer",
+    label: "Prompting Claude",
     quote: "Help me brainstorm the solution — without giving me an answer. I want to generate it on my own.",
     body: "Got an outline, not a solution, then wrote up my own thinking in a doc from there.",
     tools: ["Claude"],
@@ -172,7 +173,7 @@ export const BUILD_TIMELINE = [
   {
     n: "03",
     icon: "🎙️",
-    label: "Got stuck on \"human matchmaker\"",
+    label: "Brainstorming with Wispr",
     quote: "If I put a human between candidates and companies, it's going to be really slow... I'm trying to think how an AI could do that.",
     body: "Talked it out loud via Wispr Flow instead of typing through the block.",
     tools: ["Wispr Flow"],
@@ -180,7 +181,7 @@ export const BUILD_TIMELINE = [
   {
     n: "04",
     icon: "💡",
-    label: "The turning point",
+    label: "Eureka Moment",
     body: "Claude asked what the matchmaker's actual inputs and outputs were — and whether it needed to be human at all. That's what unlocked the standardized-assessment idea.",
     quote: "It didn't give me the answer. It asked the question that got me unstuck.",
     tools: ["Claude"],
@@ -189,16 +190,16 @@ export const BUILD_TIMELINE = [
   {
     n: "05",
     icon: "📐",
-    label: "Built the spec, then the thing",
+    label: "Claude Code Prototype Development",
     body: "Asked Claude to draft the build spec for Claude Code. Built the prototype and deployed it to Vercel.",
     tools: ["Claude", "Claude Code", "Vercel"],
   },
   {
     n: "06",
     icon: "🔁",
-    label: "Kept iterating, two ways",
-    body: "Direct edits in Claude Code for small stuff, spec-first through Claude for bigger changes.",
-    tools: ["Claude Code"],
+    label: "Iterative Refinement",
+    body: "Direct edits in Claude Code for small stuff, spec-first through Claude for bigger changes, design & copy updates with Claude Design.",
+    tools: ["Claude Code", "Claude Design"],
   },
 ];
 
@@ -207,6 +208,7 @@ export const TOOLKIT = [
   { icon: "🗒️", name: "Granola", role: "Meeting transcripts, fed straight into the research" },
   { icon: "🎙️", name: "Wispr Flow", role: "Talking through stuck points" },
   { icon: "⌨️", name: "Claude Code", role: "Build + iterate" },
+  { icon: "🎨", name: "Claude Design", role: "Visual design + copy polish" },
 ];
 
 export const BEST_PROMPT = {

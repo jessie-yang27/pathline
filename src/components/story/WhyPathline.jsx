@@ -17,9 +17,9 @@ import {
 const SLIDES = [
   { id: "belief", label: "Our belief" },
   { id: "problem", label: "Key problem" },
+  { id: "metrics", label: "North star" },
   { id: "solution", label: "The solution" },
   { id: "connection", label: "Moment of connection" },
-  { id: "metrics", label: "North star" },
   { id: "coldstart", label: "Cold start" },
 ];
 
@@ -213,6 +213,24 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </div>
       </Slide>
 
+      <Slide id="metrics">
+        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
+          <CalloutBox
+            title={NORTH_STAR.title}
+            metric={NORTH_STAR.metric}
+            definition={NORTH_STAR.definition}
+            why={NORTH_STAR.why}
+            accent="signal"
+          />
+          <CalloutBox
+            title={NOT_OPTIMIZING.title}
+            metric={NOT_OPTIMIZING.metric}
+            definition={NOT_OPTIMIZING.definition}
+            why={NOT_OPTIMIZING.why}
+          />
+        </div>
+      </Slide>
+
       <Slide id="solution" className="max-w-4xl">
         <p className="mb-10 text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
           {SOLUTION_LABEL}
@@ -231,24 +249,6 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
           Beats a cold LinkedIn InMail or an Easy Apply into a void — both sides show up already
           knowing there's a reason to talk.
         </p>
-      </Slide>
-
-      <Slide id="metrics">
-        <div className="grid w-full grid-cols-1 gap-6 md:grid-cols-2">
-          <CalloutBox
-            title={NORTH_STAR.title}
-            metric={NORTH_STAR.metric}
-            definition={NORTH_STAR.definition}
-            why={NORTH_STAR.why}
-            accent="signal"
-          />
-          <CalloutBox
-            title={NOT_OPTIMIZING.title}
-            metric={NOT_OPTIMIZING.metric}
-            definition={NOT_OPTIMIZING.definition}
-            why={NOT_OPTIMIZING.why}
-          />
-        </div>
       </Slide>
 
       <Slide id="coldstart">
