@@ -24,8 +24,8 @@ const SLIDES = [
   { id: "wedge", label: "The wedge" },
   { id: "metrics", label: "North star" },
   { id: "connection", label: "The solution" },
-  { id: "coldstart", label: "Cold start" },
   { id: "risks", label: "Risks" },
+  { id: "coldstart", label: "Cold start" },
   { id: "solution", label: "More decisions" },
 ];
 
@@ -497,7 +497,7 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </div>
       </Slide>
 
-      <Slide id="connection" nextId="coldstart">
+      <Slide id="connection" nextId="risks">
         <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
           {SOLUTION_LABEL}
         </p>
@@ -506,7 +506,19 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         </div>
       </Slide>
 
-      <Slide id="coldstart" nextId="risks">
+      <Slide id="risks" nextId="coldstart">
+        <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+          {RISKS.kicker}
+        </p>
+        <p className="mx-auto mt-4 max-w-2xl text-center font-serif text-2xl leading-snug text-ink-950 sm:text-3xl">
+          {RISKS.title}
+        </p>
+        <div className="mt-10 w-full max-w-2xl">
+          <GuardrailList items={RISKS.items} />
+        </div>
+      </Slide>
+
+      <Slide id="coldstart" nextId="solution">
         <div className="w-full max-w-2xl rounded-lg border border-ink-900/10 bg-paper-50 p-8 sm:p-10">
           <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">Cold-start plan</p>
 
@@ -530,18 +542,6 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
           <p className="mt-8 border-t border-ink-900/10 pt-6 text-sm italic leading-relaxed text-ink-500">
             {COLD_START_CAPTION}
           </p>
-        </div>
-      </Slide>
-
-      <Slide id="risks" nextId="solution">
-        <p className="text-center text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
-          {RISKS.kicker}
-        </p>
-        <p className="mx-auto mt-4 max-w-2xl text-center font-serif text-2xl leading-snug text-ink-950 sm:text-3xl">
-          {RISKS.title}
-        </p>
-        <div className="mt-10 w-full max-w-2xl">
-          <GuardrailList items={RISKS.items} />
         </div>
       </Slide>
 

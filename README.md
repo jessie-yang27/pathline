@@ -102,20 +102,20 @@ than a rewritten summary:
   for"** (stacked callouts — Match Rate vs. # of Match Requests),
   **the solution** (the candidate-to-company connection flow: assessment
   → scored → job preferences survey → see companies and send score →
-  ranked on the company's rubric → match), **cold-start plan** (a
-  vertical, numbered timeline, each step labeled with what it's solving
-  for — Credibility, Candidate acquisition, Recruiter acquisition),
-  **risks** (the three risks being watched — drop-off, fraud, and
-  bottom-of-the-bucket — each paired with its mitigation), and **a few
-  more decisions** (a bonus one-at-a-time card carousel for the
-  supporting decisions that don't fit the narrated flow: why PM roles
-  first, unit of signal, who initiates, how transparent — reusing the
-  landing page's score-preview card — and what Pathline isn't building).
+  ranked on the company's rubric → match), **risks** (the three risks
+  being watched — drop-off, fraud, and bottom-of-the-bucket — each
+  paired with its mitigation), **cold-start plan** (a vertical, numbered
+  timeline, each step labeled with what it's solving for — Credibility,
+  Candidate acquisition, Recruiter acquisition), and **a few more
+  decisions** (a bonus one-at-a-time card carousel for the supporting
+  decisions that don't fit the narrated flow: why PM roles first, unit
+  of signal, who initiates, how transparent — reusing the landing
+  page's score-preview card — and what Pathline isn't building).
 - **Why We're Better** — a competitor comparison (Indeed/Google, LinkedIn,
   Wellfound, Paraform, Otta) with color-coded candidate/recruiter strength
-  badges, Pathline's row highlighted at the top, plus the same comparison
-  plotted as a scatter graph (candidate experience × recruiter experience)
-  underneath
+  badges, Pathline's row highlighted at the top, plus the same six
+  companies plotted on a 0–100 candidate-experience × recruiter-experience
+  scatter graph underneath (axis labels stay Weak/Medium/Strong)
 - **How We Built This** — a 6-step timeline of the actual build process
   (Claude, Granola, Wispr Flow, Claude Code, Vercel), with a featured
   "turning point" moment and the best prompt of the project as a closing
