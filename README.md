@@ -79,9 +79,16 @@ via a dark banner header. Content is pulled as close to verbatim as possible
 from the actual take-home doc, so it reads in the author's own words rather
 than a rewritten summary:
 
-- **Why Pathline?** — the thesis as a pull-quote, the key-problem stats, a
-  6-card grid of key product decisions, the candidate↔company connection
-  flow, North Star / "not optimizing for" callouts, and the cold-start plan
+- **Why Pathline?** — presented as a slide deck rather than a scrolling
+  article: six full-viewport sections (belief pull-quote, key-problem stats,
+  the solution, the connection flow, North Star / "not optimizing for"
+  callouts, cold-start plan), each one filling the screen with generous
+  space so it reads as a standalone slide when presented on a desktop.
+  Scroll-snap glides between sections, and a fixed dot-nav on the right
+  tracks the active slide (via IntersectionObserver) and jumps to any
+  section on click. The solution section is its own one-at-a-time card
+  carousel — a numbered menu of the six key product decisions on the left,
+  Prev/Next controls on the right — instead of a static grid
 - **Why We're Better** — a competitor comparison (Indeed/Google, LinkedIn,
   Wellfound, Paraform, Otta) with color-coded candidate/recruiter strength
   badges, Pathline's row highlighted at the top
