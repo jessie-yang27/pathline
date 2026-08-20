@@ -85,15 +85,26 @@ from the actual take-home doc, so it reads in the author's own words rather
 than a rewritten summary:
 
 - **Why Pathline?** — presented as a slide deck rather than a scrolling
-  article: six full-viewport sections (belief pull-quote, key-problem stats,
-  the solution, the connection flow, North Star / "not optimizing for"
-  callouts, cold-start plan), each one filling the screen with generous
-  space so it reads as a standalone slide when presented on a desktop.
-  Scroll-snap glides between sections, and a fixed dot-nav on the right
-  tracks the active slide (via IntersectionObserver) and jumps to any
-  section on click. The solution section is its own one-at-a-time card
-  carousel — a numbered menu of the six key product decisions on the left,
-  Prev/Next controls on the right — instead of a static grid
+  article: six full-viewport sections (belief pull-quote, key-problem
+  stats, North Star / "not optimizing for" callouts, the solution, the
+  connection flow, cold-start plan), each one filling the screen with
+  generous space so it reads as a standalone slide when presented on a
+  desktop, and each with a clickable down-arrow at the bottom to advance
+  to the next one. Scroll-snap glides between sections, and a fixed
+  dot-nav on the right tracks the active slide (via IntersectionObserver)
+  and jumps to any section on click.
+  - The key-problem slide animates faint resume icons drifting behind the
+    content (a nod to the volume problem) alongside a step chart showing
+    a candidate's skill climbing in steps toward the job's required
+    threshold — the core issue the assessment is meant to close.
+  - The solution section is a one-at-a-time card carousel — a numbered
+    menu of the seven key product decisions on the left, Prev/Next
+    controls on the right. The "who's the wedge" card includes an
+    urgency × impact 2×2 comparing candidates and recruiters; "why PM
+    roles first" is its own card right after it.
+  - The cold-start plan is a vertical, numbered timeline, each step
+    labeled with what it's solving for (Credibility, Candidate
+    acquisition, Recruiter acquisition).
 - **Why We're Better** — a competitor comparison (Indeed/Google, LinkedIn,
   Wellfound, Paraform, Otta) with color-coded candidate/recruiter strength
   badges, Pathline's row highlighted at the top

@@ -15,36 +15,49 @@ export const STORY_PAGES = [
 
 export const THESIS_QUOTE = "Our belief: A verified assessment score is 10x better signal than a resume.";
 
-export const KEY_PROBLEM = "Key Problem: Existing tools are designed to optimize for volume over true signal.";
+export const KEY_PROBLEM = "Problem: Existing tools optimize for volume, not signal.";
 
 export const PROBLEM_STATS = [
   {
-    caption: "Candidates are shouting into the void",
+    caption: "Candidates send",
     stat: "100s",
-    detail: "of applications sent per candidate",
+    detail: "of applications",
   },
   {
-    caption: "Recruiters are drowning in low-signal applications.",
+    caption: "Recruiters receive",
     stat: "1000s",
-    detail: "of resumes received per job listing",
+    detail: "of resumes",
   },
 ];
+
+export const CORE_ISSUE = {
+  kicker: "The core issue",
+  title: "Candidate skill is often below the job's bar.",
+  caption:
+    "Every assessment attempt is a chance to step up. The closer a candidate's skill gets to the threshold a role actually needs, the fewer low-fit applications get sent — and the higher quality every match becomes.",
+};
 
 export const SOLUTION_LABEL = "The Solution: Pathline";
 
 export const THESIS_CARDS = [
   {
     q: "Who's the wedge?",
-    a: "Candidates. PM roles first.",
-    why: [
-      "Why? Candidates are higher urgency users (recruiters have a large pool), and they are the root cause of the existing volume problem.",
-      "PM roles first to create expertise in one niche.",
-    ],
+    a: "Candidates.",
+    why: "Candidates are higher urgency users — recruiters have a large pool to draw from, but candidates are also the root cause of the existing volume problem.",
+    visual: "urgencyImpact",
+  },
+  {
+    q: "Why PM roles first?",
+    a: "To create expertise in one niche.",
+    why: "PM roles first, then expand — depth in one function before breadth across others.",
   },
   {
     q: "What's the unit of signal?",
     a: "A standardized assessment score.",
-    why: "The assessment 1) increases quality by helping the candidate self-improve, and 2) shares meaning beyond a resume to the recruiter.",
+    why: [
+      "The assessment 1) increases quality by helping the candidate self-improve, and 2) shares meaning beyond a resume to the recruiter.",
+      "I'd first thought about a human recruiter doing this assessment — but a virtual, standardized version gets there faster and scales further.",
+    ],
   },
   {
     q: "Who initiates?",
@@ -71,7 +84,7 @@ export const THESIS_CARDS = [
 export const CONNECTION_STEPS = [
   { icon: "📝", label: "Candidate takes assessment" },
   { icon: "📊", label: "Gets scored" },
-  { icon: "🙋", label: "Expresses interest" },
+  { icon: "🙋", label: "Candidate expresses interest (sends score)" },
   { icon: "📋", label: "Company sees candidates ranked on their rubric" },
   { icon: "🤝", label: "Company expresses interest" },
   { icon: "🚀", label: "Match begins" },
@@ -94,16 +107,19 @@ export const NOT_OPTIMIZING = {
 export const COLD_START_STEPS = [
   {
     n: "01",
+    category: "Credibility",
     label: "Build assessment with PMs from name-brand companies",
     body: "This builds credibility for the assessment, and then you can put logos on to the webpage itself.",
   },
   {
     n: "02",
+    category: "Candidate acquisition",
     label: "Market free assessment as a tool for candidates",
     body: "Get candidates to sign up by marketing the assessment itself as a way to check how you rank among peers.",
   },
   {
     n: "03",
+    category: "Recruiter acquisition",
     label: "Approach recruiters with supply",
     body: "Go to employers already holding a pool of scored candidates — not a cold pitch.",
   },

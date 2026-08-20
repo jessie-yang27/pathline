@@ -35,3 +35,31 @@ body {
   color: var(--color-ink-900);
   font-family: var(--font-sans);
 }
+
+@keyframes float-resume-a {
+  0% { transform: translate(0, 0) rotate(-6deg); }
+  50% { transform: translate(30px, -24px) rotate(4deg); }
+  100% { transform: translate(0, 0) rotate(-6deg); }
+}
+@keyframes float-resume-b {
+  0% { transform: translate(0, 0) rotate(5deg); }
+  50% { transform: translate(-28px, 22px) rotate(-6deg); }
+  100% { transform: translate(0, 0) rotate(5deg); }
+}
+@keyframes float-resume-c {
+  0% { transform: translate(0, 0) rotate(-3deg); }
+  50% { transform: translate(22px, 28px) rotate(8deg); }
+  100% { transform: translate(0, 0) rotate(-3deg); }
+}
+
+.animate-float-a { animation: float-resume-a 9s ease-in-out infinite; }
+.animate-float-b { animation: float-resume-b 11s ease-in-out infinite; }
+.animate-float-c { animation: float-resume-c 13s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float-a,
+  .animate-float-b,
+  .animate-float-c {
+    animation: none;
+  }
+}
