@@ -30,13 +30,6 @@ export const PROBLEM_STATS = [
   },
 ];
 
-export const CORE_ISSUE = {
-  kicker: "The core issue",
-  title: "Candidate skill is often below the job's bar.",
-  caption:
-    "Every assessment attempt is a chance to step up. The closer a candidate's skill gets to the threshold a role actually needs, the fewer low-fit applications get sent — and the higher quality every match becomes.",
-};
-
 export const SOLUTION_LABEL = "The Solution: Pathline";
 
 export const THESIS_CARDS = [
@@ -58,11 +51,13 @@ export const THESIS_CARDS = [
       "The assessment 1) increases quality by helping the candidate self-improve, and 2) shares meaning beyond a resume to the recruiter.",
       "I'd first thought about a human recruiter doing this assessment — but a virtual, standardized version gets there faster and scales further.",
     ],
+    visual: "accuracySpeed",
   },
   {
     q: "Who initiates?",
     a: "Candidates express interest.",
     why: "Candidates are in charge here — it's infeasible for a recruiter to initiate among thousands of candidates.",
+    visual: "candidateJobRatio",
   },
   {
     q: "How transparent are we?",
@@ -70,9 +65,26 @@ export const THESIS_CARDS = [
     why: "We fully show the score to both sides, but hide the exact weights of the scoring model. Transparency builds fairness and trust; hidden weights protect against gaming it.",
   },
   {
-    q: "Key risk?",
-    a: "Gaming the system.",
-    why: "Proctoring with screen recording and rotating questions are the first line of defense.",
+    q: "What are the guardrail metrics?",
+    a: "Fraud rate, drop-off rate, bottom-of-the-bucket risk.",
+    why: "Proctoring with screen recording and rotating questions are the first line of defense — these three metrics catch what slips through.",
+    guardrails: [
+      {
+        metric: "Fraud rate",
+        definition: "% of assessments flagged for cheating",
+        mitigation: "AI proctoring + rotating questions",
+      },
+      {
+        metric: "Drop-off rate",
+        definition: "% completion rate of the assessment",
+        mitigation: "Short, easy interviews + candidate testimonials",
+      },
+      {
+        metric: "Bottom-of-the-bucket risk",
+        definition: "Average time to match",
+        mitigation: "Feedback loop after every assessment",
+      },
+    ],
   },
   {
     q: "What are we NOT building?",
@@ -99,9 +111,15 @@ export const NORTH_STAR = {
 
 export const NOT_OPTIMIZING = {
   title: "Not Optimizing For (Yet)",
-  metric: "Efficiency & monetization",
-  definition: "Take-rate, margin, and funnel efficiency stay off the dashboard for now.",
-  why: "That comes once the marketplace is mature — after quality, not before it.",
+  metric: "# of Requests",
+  definition: "Raw volume of match requests sent stays off the dashboard as a goal.",
+  why: "Chasing request volume just recreates the old spam problem. We care whether requests convert, not how many get sent.",
+};
+
+export const MATCH_HYPOTHESIS = {
+  title: "Hypothesis",
+  statement:
+    "Increasing candidate quality and restricting the jobs they apply to will increase match rate.",
 };
 
 export const COLD_START_STEPS = [
@@ -109,19 +127,16 @@ export const COLD_START_STEPS = [
     n: "01",
     category: "Credibility",
     label: "Build assessment with PMs from name-brand companies",
-    body: "This builds credibility for the assessment, and then you can put logos on to the webpage itself.",
   },
   {
     n: "02",
     category: "Candidate acquisition",
     label: "Market free assessment as a tool for candidates",
-    body: "Get candidates to sign up by marketing the assessment itself as a way to check how you rank among peers.",
   },
   {
     n: "03",
     category: "Recruiter acquisition",
     label: "Approach recruiters with supply",
-    body: "Go to employers already holding a pool of scored candidates — not a cold pitch.",
   },
 ];
 

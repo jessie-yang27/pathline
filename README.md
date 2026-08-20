@@ -94,14 +94,19 @@ than a rewritten summary:
   dot-nav on the right tracks the active slide (via IntersectionObserver)
   and jumps to any section on click.
   - The key-problem slide animates faint resume icons drifting behind the
-    content (a nod to the volume problem) alongside a step chart showing
-    a candidate's skill climbing in steps toward the job's required
-    threshold — the core issue the assessment is meant to close.
+    two stat cards (a nod to the volume problem).
+  - North Star / "not optimizing for" sit stacked, followed by a
+    "Hypothesis" card: increasing candidate quality and restricting the
+    jobs candidates apply to should raise match rate.
   - The solution section is a one-at-a-time card carousel — a numbered
     menu of the seven key product decisions on the left, Prev/Next
-    controls on the right. The "who's the wedge" card includes an
-    urgency × impact 2×2 comparing candidates and recruiters; "why PM
-    roles first" is its own card right after it.
+    controls on the right, each with its own small 2×2 or ratio visual:
+    "who's the wedge" (urgency × impact — candidates vs. recruiters),
+    "why PM roles first" (its own card right after it), "unit of signal"
+    (accuracy × speed to scale — human vs. AI assessment), "who
+    initiates" (a candidate-vs-job-count ratio), and "guardrail metrics"
+    (fraud rate, drop-off rate, and bottom-of-the-bucket risk, each
+    paired with its mitigation).
   - The cold-start plan is a vertical, numbered timeline, each step
     labeled with what it's solving for (Credibility, Candidate
     acquisition, Recruiter acquisition).

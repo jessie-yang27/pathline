@@ -1,17 +1,16 @@
 import { useEffect, useRef, useState } from "react";
 import StoryShell from "./StoryShell";
-import SkillStepGraph from "./SkillStepGraph";
 import { SecondaryButton } from "../ui";
 import {
   THESIS_QUOTE,
   KEY_PROBLEM,
   PROBLEM_STATS,
-  CORE_ISSUE,
   SOLUTION_LABEL,
   THESIS_CARDS,
   CONNECTION_STEPS,
   NORTH_STAR,
   NOT_OPTIMIZING,
+  MATCH_HYPOTHESIS,
   COLD_START_STEPS,
   COLD_START_CAPTION,
 } from "../../storyData";
@@ -106,43 +105,95 @@ function SlideNav({ active }) {
   );
 }
 
-function UrgencyImpactMatrix() {
+function QuadrantCell({ item }) {
+  if (!item) return <div className="h-20 rounded-sm border border-ink-900/10 bg-paper-50" />;
+  const boxClasses =
+    item.tone === "accent"
+      ? "border-signal-600/30 bg-signal-500/10"
+      : "border-verified-700/25 bg-verified-600/10";
+  const pillClasses =
+    item.tone === "accent"
+      ? "bg-ink-900 text-paper-50"
+      : "border border-ink-900/20 text-ink-800";
+  return (
+    <div className={`flex h-20 items-center justify-center rounded-sm border ${boxClasses}`}>
+      <span className={`rounded-full px-3 py-1 text-[11px] font-semibold ${pillClasses}`}>{item.label}</span>
+    </div>
+  );
+}
+
+function QuadrantMatrix({ axisY, axisX, rowTop, rowBottom, colLeft, colRight, topLeft, topRight, bottomLeft, bottomRight, caption }) {
   return (
     <div className="mt-6 rounded-lg border border-ink-900/10 bg-paper-100 p-5">
-      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">Urgency × impact</p>
+      <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">
+        {axisY} × {axisX}
+      </p>
       <div className="mt-4 grid grid-cols-[56px_1fr_1fr] gap-1.5">
         <div />
-        <div className="pb-1 text-center text-[10px] uppercase tracking-wide text-ink-400">Low impact</div>
-        <div className="pb-1 text-center text-[10px] uppercase tracking-wide text-ink-400">High impact</div>
+        <div className="pb-1 text-center text-[10px] uppercase tracking-wide text-ink-400">{colLeft}</div>
+        <div className="pb-1 text-center text-[10px] uppercase tracking-wide text-ink-400">{colRight}</div>
 
         <div className="flex items-center justify-end pr-1 text-right text-[10px] uppercase leading-tight tracking-wide text-ink-400">
-          High
-          <br />
-          urgency
+          {rowTop}
         </div>
-        <div className="h-20 rounded-sm border border-ink-900/10 bg-paper-50" />
-        <div className="flex h-20 items-center justify-center rounded-sm border border-signal-600/30 bg-signal-500/10">
-          <span className="rounded-full bg-ink-900 px-3 py-1 text-[11px] font-semibold text-paper-50">
-            Candidates
-          </span>
-        </div>
+        <QuadrantCell item={topLeft} />
+        <QuadrantCell item={topRight} />
 
         <div className="flex items-center justify-end pr-1 text-right text-[10px] uppercase leading-tight tracking-wide text-ink-400">
-          Low
-          <br />
-          urgency
+          {rowBottom}
         </div>
-        <div className="h-20 rounded-sm border border-ink-900/10 bg-paper-50" />
-        <div className="flex h-20 items-center justify-center rounded-sm border border-verified-700/25 bg-verified-600/10">
-          <span className="rounded-full border border-ink-900/20 px-3 py-1 text-[11px] font-semibold text-ink-800">
-            Recruiters
-          </span>
+        <QuadrantCell item={bottomLeft} />
+        <QuadrantCell item={bottomRight} />
+      </div>
+      <p className="mt-3 text-xs leading-relaxed text-ink-500">{caption}</p>
+    </div>
+  );
+}
+
+function CandidateJobRatio() {
+  return (
+    <div className="mt-6 rounded-lg border border-ink-900/10 bg-paper-100 p-5">
+      <div className="grid grid-cols-2 gap-6">
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">Candidates</p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {Array.from({ length: 28 }).map((_, i) => (
+              <span key={i} className="h-2.5 w-2.5 rounded-full bg-ink-900/70" />
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ink-500">Jobs</p>
+          <div className="mt-3 flex flex-wrap gap-1.5">
+            {Array.from({ length: 4 }).map((_, i) => (
+              <span key={i} className="h-2.5 w-2.5 rounded-full bg-signal-600" />
+            ))}
+          </div>
         </div>
       </div>
-      <p className="mt-3 text-xs leading-relaxed text-ink-500">
-        Recruiters have a large pool to draw from, so any one hire is lower urgency. Candidates
-        don't — that's the wedge.
+      <p className="mt-4 text-xs leading-relaxed text-ink-500">
+        Far more candidates than open roles — it's infeasible for a recruiter to initiate among
+        thousands of candidates, so candidates have to be the ones who raise their hand.
       </p>
+    </div>
+  );
+}
+
+function GuardrailList({ items }) {
+  return (
+    <div className="mt-6 divide-y divide-ink-900/10 overflow-hidden rounded-lg border border-ink-900/10 bg-paper-100">
+      {items.map((g) => (
+        <div key={g.metric} className="grid grid-cols-1 gap-1 p-4 sm:grid-cols-[1fr_1fr] sm:gap-4">
+          <div>
+            <p className="text-sm font-semibold text-ink-900">{g.metric}</p>
+            <p className="mt-0.5 text-xs text-ink-500">{g.definition}</p>
+          </div>
+          <div className="sm:text-right">
+            <p className="text-[10px] font-semibold uppercase tracking-wide text-verified-700">Mitigation</p>
+            <p className="mt-0.5 text-xs text-ink-600">{g.mitigation}</p>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
@@ -180,7 +231,38 @@ function ThesisCarousel() {
             {line}
           </p>
         ))}
-        {card.visual === "urgencyImpact" && <UrgencyImpactMatrix />}
+
+        {card.visual === "urgencyImpact" && (
+          <QuadrantMatrix
+            axisY="Urgency"
+            axisX="Impact on quality"
+            rowTop="High"
+            rowBottom="Low"
+            colLeft="Low"
+            colRight="High"
+            topRight={{ label: "Candidates", tone: "accent" }}
+            bottomLeft={{ label: "Recruiters", tone: "muted" }}
+            caption="Recruiters have a large pool to draw from, so any one hire is lower urgency and lower relative impact. Candidates don't — that's the wedge."
+          />
+        )}
+
+        {card.visual === "accuracySpeed" && (
+          <QuadrantMatrix
+            axisY="Accuracy"
+            axisX="Speed to scale"
+            rowTop="High"
+            rowBottom="Low"
+            colLeft="Slow"
+            colRight="Fast"
+            topLeft={{ label: "Human assessment", tone: "muted" }}
+            bottomRight={{ label: "AI assessment", tone: "accent" }}
+            caption="A human assessment is more accurate today, but doesn't scale. A virtual, standardized assessment trades a little accuracy for speed — and gets tuned over time."
+          />
+        )}
+
+        {card.visual === "candidateJobRatio" && <CandidateJobRatio />}
+
+        {card.guardrails && <GuardrailList items={card.guardrails} />}
 
         <div className="mt-10 flex items-center justify-between border-t border-ink-900/10 pt-6">
           <SecondaryButton
@@ -299,25 +381,14 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         <div className="relative z-10 w-full">
           <p className="mx-auto max-w-lg text-center text-base font-medium text-ink-600">{KEY_PROBLEM}</p>
 
-          <div className="mx-auto mt-8 grid w-full max-w-4xl grid-cols-1 gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-stretch">
-            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-1">
-              {PROBLEM_STATS.map((p) => (
-                <div key={p.caption} className="rounded-lg border border-ink-900/10 bg-paper-50 p-6 text-center">
-                  <p className="text-sm leading-relaxed text-ink-500">{p.caption}</p>
-                  <p className="mt-3 font-serif text-5xl text-signal-600">{p.stat}</p>
-                  <p className="mt-2 text-sm font-medium text-ink-900">{p.detail}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="rounded-lg border border-ink-900/10 bg-paper-50 p-6 sm:p-7">
-              <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">{CORE_ISSUE.kicker}</p>
-              <p className="mt-2 font-serif text-xl leading-snug text-ink-950">{CORE_ISSUE.title}</p>
-              <div className="mt-4">
-                <SkillStepGraph />
+          <div className="mx-auto mt-8 grid w-full max-w-3xl grid-cols-1 gap-5 sm:grid-cols-2">
+            {PROBLEM_STATS.map((p) => (
+              <div key={p.caption} className="rounded-lg border border-ink-900/10 bg-paper-50 p-8 text-center">
+                <p className="text-sm leading-relaxed text-ink-500">{p.caption}</p>
+                <p className="mt-3 font-serif text-5xl text-signal-600">{p.stat}</p>
+                <p className="mt-2 text-sm font-medium text-ink-900">{p.detail}</p>
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-ink-600">{CORE_ISSUE.caption}</p>
-            </div>
+            ))}
           </div>
         </div>
       </Slide>
@@ -337,6 +408,12 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
             definition={NOT_OPTIMIZING.definition}
             why={NOT_OPTIMIZING.why}
           />
+          <div className="rounded-lg border border-dashed border-ink-900/20 bg-paper-50 p-6">
+            <p className="text-xs font-semibold uppercase tracking-[0.14em] text-ink-500">
+              {MATCH_HYPOTHESIS.title}
+            </p>
+            <p className="mt-3 text-base leading-relaxed text-ink-800">{MATCH_HYPOTHESIS.statement}</p>
+          </div>
         </div>
       </Slide>
 
@@ -354,10 +431,6 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
         <div className="mt-8 w-full">
           <ConnectionFlow />
         </div>
-        <p className="mt-6 max-w-2xl text-center text-sm text-ink-500">
-          Beats a cold LinkedIn InMail or an Easy Apply into a void — both sides show up already
-          knowing there's a reason to talk.
-        </p>
       </Slide>
 
       <Slide id="coldstart">
@@ -376,7 +449,6 @@ export default function WhyPathline({ onNavigate, onBackToProduct }) {
                     {s.category}
                   </p>
                   <p className="mt-1 font-medium text-ink-900">{s.label}</p>
-                  <p className="mt-1 text-sm leading-relaxed text-ink-600">{s.body}</p>
                 </div>
               ))}
             </div>
